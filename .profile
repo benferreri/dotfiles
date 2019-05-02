@@ -21,4 +21,6 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
     PATH="$HOME/":$PATH
 fi
+# start pywal
 wal -R
+export BAT_THEME="OneHalfDark"
