@@ -1,0 +1,10 @@
+2019-05-01 20:09:50,715 - yams - INFO - Starting up YAMS v0.69
+2019-05-01 20:09:50,716 - yams - INFO - Connected to mpd, version: 0.21.6
+2019-05-01 20:09:50,717 - yams - INFO - Wrote PID to file: /home/ben/.config/yams/yams.pid
+2019-05-01 20:10:34,121 - yams - INFO - Received event in subsytem: ['player']
+2019-05-01 20:10:34,130 - yams - INFO - Received state: play
+2019-05-01 20:10:34,130 - yams - INFO - Playing More, 0/62s (0.8%)
+2019-05-01 20:10:38,141 - yams - INFO - Received event in subsytem: ['player']
+2019-05-01 20:10:38,142 - yams - INFO - Received state: pause
+2019-05-01 20:10:44,162 - yams - INFO - Received event in subsytem: ['player']
+2019-05-01 20:10:44,163 - yams - INFO - Received state: stop
