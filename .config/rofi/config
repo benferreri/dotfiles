@@ -1,3 +1,4 @@
+rofi.theme:                          ~/.cache/wal/colors-rofi-dark.rasi
 rofi.modi:                           window,run,ssh
 rofi.width:                          80
 rofi.lines:                          10
@@ -22,13 +23,8 @@ rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Alt+h
 rofi.kb-row-up:                      Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k
 rofi.kb-row-down:                    Down,Control+n,Alt+j
 rofi.fullscreen:                     false
-# colors
-* {
-    background: #166032;
-    foreground: #ffffe9;
-}
 
-rofi.color-normal:                   @background, @foreground, #09152D, #cbcb5f, #ffffe9
+rofi.color-normal:                   #166032, #ffffe9, #09152D, #cbcb5f, #ffffe9
 rofi.color-urgent:                   #09152D, #d6b48d, #22231D, #d6b48d, #ffffe9
 rofi.color-active:                   #09152D, #3b7ef8, #09152D, #3b7ef8, #09152D
 rofi.color-window:                   argb:cc09152D, argb:cccbcb5f, argb:cc8c8c41

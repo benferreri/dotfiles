@@ -56,7 +56,7 @@ interval = 2
 format-foreground = ${colors.mod-frg}
 format-background = ${colors.mod-bkg}
 format-underline = #f90000
-label = " %percentage:02%%  "
+label = "  %percentage:02%%  "
 label-background = ${colors.mod-bkg}
 label-foreground = ${colors.mod-frg}
 
@@ -262,7 +262,7 @@ type = custom/text
 content-background = ${colors.mod-bkg}
 content-foreground = ${colors.mod-frg}
 
-content = "%{A1:rofi -show run:} <i class="nf nf-fa-search"></i>  %{A}"
+content = "%{A1:rofi -show run:}  %{A}"
 
 [settings]
 screenchange-reload = true
