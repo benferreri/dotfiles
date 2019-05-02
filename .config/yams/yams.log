@@ -70,3 +70,6 @@
 2019-05-01 22:35:04,921 - yams - INFO - Scrobbling!
 2019-05-01 22:35:05,401 - yams - INFO - Scrobbles accepted: 1
 2019-05-01 22:35:05,401 - yams - INFO - Scrobbling was a success!
+2019-05-01 22:36:50,704 - yams - INFO - While the scrobbling threshold would normally be 50%, since we're starting at 5.3s (out of 237.9s, a.k.a. 2.2%), it's now 52.2%
+2019-05-01 22:36:50,705 - yams - INFO - Starting to watch track: Stay Tru, currently at: 5/238s (2.2%). Will scrobble in: 119s
+2019-05-01 22:36:51,183 - yams - INFO - Now playing was a success!
