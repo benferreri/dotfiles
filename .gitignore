@@ -1,1 +1,11 @@
-.config/yams/
+/.config/*
+!/.config/beets/
+!/.config/cava/
+!/.config/i3/
+!/.config/mpd/
+!/.config/mpv/
+!/.config/polybar/
+!/.config/ranger/
+!/.config/rofi/
+!/.config/rtv/
+!/.config/user-dirs.dirs

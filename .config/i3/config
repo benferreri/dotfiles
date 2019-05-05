@@ -37,7 +37,7 @@ bindsym $mod+m exec firefox
 bindsym $mod+o exec urxvt
 
 # open rofi
-bindsym$mod+s exec rofi -show run 
+bindsym$mod+s exec rofi -show drun 
 
 # toggle touchpad
 bindsym $mod+Shift+backslash exec ~/Documents/scripts/toggle-touchpad.sh
@@ -132,10 +132,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -156,10 +156,6 @@ bindsym $mod+r mode "resize"
 #-old-#bar {
 #-old-#       status_command i3status
 #-old-#}
-
-exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Scrolling Distance' -30 -30
-exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Palm Detection' 1
-exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Two-Finger Scrolling' 1 1
 
 ### i3-gaps stuff ###
 
@@ -215,17 +211,21 @@ mode "$mode_gaps_outer" {
 
 # bindings
 
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
-bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
-bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo xbacklight -dec 10
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
+bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
 bindsym $mod+equal exec --no-startup-id import ~/pictures/$(date +%s).png
 
 # startup
 
 exec --no-startup-id compton -bcCG --shadow-radius 60 -l -60 -t -60 --shadow-red 0.8 --shadow-green 0.0 --shadow-blue 1.0 --shadow-exclude '!focused' &
-exec --no-startup-id synclient VertScrollDelta=-30
-exec --no-startup-id synclient HorizScrollDelta=-30
 exec --no-startup-id redshift
 exec --no-startup-id polybar mypolybar
+exec --no-startup-id sudo powertop --auto-tune
+exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Scrolling Distance' -30 -30
+exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Palm Detection' 1
+exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Two-Finger Scrolling' 1 1
+
+

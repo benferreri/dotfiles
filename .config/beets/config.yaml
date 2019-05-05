@@ -1,0 +1,3 @@
+directory: ~/music/beets
+library: ~/data/musiclibrary.db
+plugins: discogs
