@@ -1,5 +1,5 @@
 rofi.theme:                          ~/.cache/wal/colors-rofi-dark.rasi
-rofi.modi:                           window,run,ssh
+rofi.modi:                           window,run,ssh,drun
 rofi.width:                          80
 rofi.lines:                          10
 rofi.columns:                        2

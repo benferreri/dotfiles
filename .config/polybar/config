@@ -30,7 +30,7 @@ label-mode-background = ${colors.primary}
 
 label-focused = %index%
 label-focused-background = ${colors.primary}
-label-focused-foreground = ${colors.mod-frg}
+label-focused-foreground = ${colors.mod-bkg}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 1
 
@@ -56,7 +56,7 @@ interval = 2
 format-foreground = ${colors.mod-frg}
 format-background = ${colors.mod-bkg}
 format-underline = #f90000
-label = "  %percentage:02%%  "
+label = "%{T3} %{T-} %percentage:02%%  "
 label-background = ${colors.mod-bkg}
 label-foreground = ${colors.mod-frg}
 
@@ -66,34 +66,33 @@ interval = 2
 format-foreground = ${colors.mod-frg}
 format-background = ${colors.mod-bkg}
 format-underline = #4bffdc
-label = " %percentage_used:02%%  "
+label = "%{T3} %{T-}%percentage_used:02%%  "
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlan0
 interval = 3.0
 
 format-connected-background = ${colors.mod-bkg}
 format-connected-foreground = ${colors.mod-frg}
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected = "%{A1:nm-connection-editor:}  %essid%  %{A}"
+label-connected = "%{A1:cmst:} %essid% %{A}"
 
 format-disconnected =
 
-ramp-signal-0 = "  %{T5}%{T-}"
-ramp-signal-1 = "  %{T5}%{T-}"
-ramp-signal-2 = "  %{T5}%{T-}"
+ramp-signal-0 = "%{T3}%{T-}"
+ramp-signal-1 = "%{T3}%{T-}"
+ramp-signal-2 = "%{T3}%{T-}"
 
 [module/eth]
 type = internal/network
-interface = enp0s31f6
+interface = eth0
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.mod-frg}
-label-connected = %local_ip%
+label-connected-foreground = ${colors.mod-frg}
+label-connected-background = ${colors.mod-bkg}
+label-connected = "%{A1:cmst:}%{T3} %{T-}%{A}"
 
 format-disconnected =
 
@@ -163,8 +162,8 @@ format-discharging-underline = ${self.format-charging-underline}
 
 format-full-foreground = ${colors.mod-frg}
 format-full-background = ${colors.mod-bkg}
-format-full-prefix = "   "
-format-full-suffix = "  "
+format-full-prefix = " %{T3}%{T-} "
+format-full-suffix = " " 
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-foreground = ${colors.mod-frg}
@@ -179,9 +178,9 @@ ramp-capacity-7 = "  %{T3}%{T-}"
 ramp-capacity-8 = "  %{T3}%{T-}"
 ramp-capacity-9 = "  %{T3}%{T-}"
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = %{T3}%{T-}
+animation-charging-1 = %{T3}%{T-}
+animation-charging-2 = %{T3}%{T-}
 animation-charging-foreground = ${colors.mod-frg}
 animation-charging-framerate = 750
 
@@ -216,7 +215,7 @@ format-spacing = 1
 format-background = ${colors.mod-bkg}
 format-foreground = ${colors.mod-frg}
 
-label-open = "%{T3} %{T-}   "
+label-open = "%{T3}  ⏻ %{T-}"
 label-close = " cancel"
 label-separator = |
 
@@ -262,7 +261,7 @@ type = custom/text
 content-background = ${colors.mod-bkg}
 content-foreground = ${colors.mod-frg}
 
-content = "%{A1:rofi -show run:}  %{A}"
+content = "%{A1:rofi -show drun:} %{T3}%{T-} %{A}"
 
 [settings]
 screenchange-reload = true
@@ -296,8 +295,7 @@ border-color = #00000000
 font-0 = "mononoki:pixelsize=28;3"
 font-1 = unicode:fontformat=truetype:size=28:antialias=false;0
 font-2 = "SauceCodePro Nerd Font:pixelsize=28;3"
-font-3 = "SauceCodePro Nerd Font:size=28;4"
-font-4 = "Siji:pixelsize=28;3"
+font-3 = "SauceCodePro Nerd Font:pixelsize=20;4"
 font-5 = "Noto Sans Symbols2:pixelsize=28;3"
 
 modules-left = rofi i3 
