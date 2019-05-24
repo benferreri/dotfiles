@@ -1,3 +1,3 @@
-URxvt*font: xft:mononoki:size=20, xft:symbola:size=18
+URxvt*font: xft:Iosevka Term:style=Light:size=18, xft:symbola:size=18, xft:unicode-emoji:size=18
 URxvt*scrollBar: false
 Xft.dpi: 192

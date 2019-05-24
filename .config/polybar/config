@@ -1,4 +1,5 @@
-;==========================================================
+;
+=========================================================
 ;   To learn more about how to configure Polybar
 ;   go to https://github.com/jaagr/polybar
 ;   The README contains alot of information
@@ -15,7 +16,7 @@ alert = ${xrdb:color4:#222}
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:50:...%
+label = " %title:0:50:...%"
 
 [module/i3]
 type = internal/i3
@@ -56,7 +57,7 @@ interval = 2
 format-foreground = ${colors.mod-frg}
 format-background = ${colors.mod-bkg}
 format-underline = #f90000
-label = "%{T3} %{T-} %percentage:02%%  "
+label = "  %percentage:02%%  "
 label-background = ${colors.mod-bkg}
 label-foreground = ${colors.mod-frg}
 
@@ -66,7 +67,7 @@ interval = 2
 format-foreground = ${colors.mod-frg}
 format-background = ${colors.mod-bkg}
 format-underline = #4bffdc
-label = "%{T3} %{T-}%percentage_used:02%%  "
+label = " percentage_used:02%%  "
 
 [module/wlan]
 type = internal/network
@@ -75,15 +76,15 @@ interval = 3.0
 
 format-connected-background = ${colors.mod-bkg}
 format-connected-foreground = ${colors.mod-frg}
-format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal>
 format-connected-underline = #9f78e1
-label-connected = "%{A1:cmst:} %essid% %{A}"
+label-connected = 
 
 format-disconnected =
 
-ramp-signal-0 = "%{T3}%{T-}"
-ramp-signal-1 = "%{T3}%{T-}"
-ramp-signal-2 = "%{T3}%{T-}"
+ramp-signal-0 = "%{A1:cmst:}%{T3}%{T-}%{A}"
+ramp-signal-1 = "%{A1:cmst:}%{T3}%{T-}%{A}"
+ramp-signal-2 = "%{A1:cmst:}%{T3}%{T-}%{A}"
 
 [module/eth]
 type = internal/network
@@ -92,7 +93,7 @@ interval = 3.0
 
 label-connected-foreground = ${colors.mod-frg}
 label-connected-background = ${colors.mod-bkg}
-label-connected = "%{A1:cmst:}%{T3} %{T-}%{A}"
+label-connected = "%{A1:cmst:} %{T2}%{T-} %{A}"
 
 format-disconnected =
 
@@ -115,12 +116,12 @@ type = internal/pulseaudio
 
 format-volume-foreground = ${colors.mod-frg}
 format-volume-background = ${colors.mod-bkg}
-format-volume = <label-volume> <bar-volume>
+format-volume = "<label-volume> <bar-volume>"
 label-volume = " %{T3}%{T-} %percentage%% "
 
 label-muted-foreground = ${colors.mod-frg}
 label-muted-background = ${colors.mod-bkg}
-label-muted = "  🔇  "
+label-muted = " %{T3}%{T-} "
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -157,30 +158,30 @@ format-charging-underline = #ffb52a
 format-discharging-foreground = ${colors.mod-frg}
 format-discharging-background = ${colors.mod-bkg}
 label-discharging-foreground = ${colors.mod-frg}
-format-discharging = "  <ramp-capacity>  <label-discharging>  "
+format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-foreground = ${colors.mod-frg}
 format-full-background = ${colors.mod-bkg}
-format-full-prefix = " %{T3}%{T-} "
-format-full-suffix = " " 
+format-full-prefix = "%{T4}%{T-}"
+format-full-suffix =  
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-foreground = ${colors.mod-frg}
-ramp-capacity-0 = "  %{T3}%{T-}"
-ramp-capacity-1 = "  %{T3}%{T-}"
-ramp-capacity-2 = "  %{T3}%{T-}"
-ramp-capacity-3 = "  %{T3}%{T-}"
-ramp-capacity-4 = "  %{T3}%{T-}"
-ramp-capacity-5 = "  %{T3}%{T-}"
-ramp-capacity-6 = "  %{T3}%{T-}"
-ramp-capacity-7 = "  %{T3}%{T-}"
-ramp-capacity-8 = "  %{T3}%{T-}"
-ramp-capacity-9 = "  %{T3}%{T-}"
+ramp-capacity-0 = "%{T4}%{T-} "
+ramp-capacity-1 = "%{T4}%{T-} "
+ramp-capacity-2 = "%{T4}%{T-} "
+ramp-capacity-3 = "%{T4}%{T-} "
+ramp-capacity-4 = "%{T4}%{T-} "
+ramp-capacity-5 = "%{T4}%{T-} "
+ramp-capacity-6 = "%{T4}%{T-} "
+ramp-capacity-7 = "%{T4}%{T-} "
+ramp-capacity-8 = "%{T4}%{T-} "
+ramp-capacity-9 = "%{T4}%{T-} "
 
-animation-charging-0 = %{T3}%{T-}
-animation-charging-1 = %{T3}%{T-}
-animation-charging-2 = %{T3}%{T-}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
 animation-charging-foreground = ${colors.mod-frg}
 animation-charging-framerate = 750
 
@@ -215,45 +216,45 @@ format-spacing = 1
 format-background = ${colors.mod-bkg}
 format-foreground = ${colors.mod-frg}
 
-label-open = "%{T3}  ⏻ %{T-}"
-label-close = " cancel"
+label-open = "%{T2}%{T-} "
+label-close = " close"
 label-separator = |
 
 menu-0-0 = "reboot"
 menu-0-0-exec = menu-open-1
-menu-0-1 = "power off"
+menu-0-1 = "power off "
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = " cancel"
+menu-1-0 = "cancel"
 menu-1-0-exec = menu-open-0
-menu-1-1 = "reboot"
+menu-1-1 = "reboot "
 menu-1-1-exec = systemctl reboot
 
 menu-2-0 = "power off"
 menu-2-0-exec = systemctl poweroff
-menu-2-1 = " cancel"
+menu-2-1 = "cancel "
 menu-2-1-exec = menu-open-0
 
 [module/decor-glyph]
 type = custom/text
-content-background = #d909152D
+content-background = ${colors.bar-bkg}
 content-foreground = ${colors.mod-bkg}
 
 [module/left-start]
 inherit = module/decor-glyph
-content = "%{T4}%{T-}"
+content = "%{T3}%{T-}"
 
 [module/left-end]
 inherit = module/decor-glyph
-content = "%{T4}%{T-}"
+content = "%{T3}%{T-}"
 
 [module/right-start]
 inherit = module/decor-glyph
-content = "%{T4}%{T-}"
+content = "%{T3}%{T-}"
 
 [module/right-end]
 inherit = module/decor-glyph
-content = "%{T4}%{T-}"
+content = "%{T3}%{T-}"
 
 [module/rofi]
 type = custom/text
@@ -261,7 +262,7 @@ type = custom/text
 content-background = ${colors.mod-bkg}
 content-foreground = ${colors.mod-frg}
 
-content = "%{A1:rofi -show drun:} %{T3}%{T-} %{A}"
+content = "%{A1:rofi -show drun:} %{T2}%{T-}%{A}"
 
 [settings]
 screenchange-reload = true
@@ -292,15 +293,16 @@ border-top-size = 20
 border-bottom-size = 0
 border-color = #00000000
 
-font-0 = "mononoki:pixelsize=28;3"
-font-1 = unicode:fontformat=truetype:size=28:antialias=false;0
-font-2 = "SauceCodePro Nerd Font:pixelsize=28;3"
-font-3 = "SauceCodePro Nerd Font:pixelsize=20;4"
-font-5 = "Noto Sans Symbols2:pixelsize=28;3"
+font-0 = "Iosevka Term:pixelsize=28;5"
+font-1 = "Iosevka Term:pixelsize=48;8"
+font-2 = "Iosevka Term:pixelsize=68;12"
+font-3 = "Iosevka Term:pixelsize=38;6"
 
-modules-left = rofi i3 
-modules-center = xwindow
-modules-right = pulseaudio cpu memory wlan eth battery date powermenu
+modules-left = rofi left-end left-start wlan left-end eth xwindow
+modules-center = i3
+modules-right = right-start pulseaudio right-end right-start battery right-end right-start date right-end right-start powermenu
+module-margin = 0
+fixed-center = true
 
 tray-position = none
 
