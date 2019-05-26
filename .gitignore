@@ -10,3 +10,5 @@
 !/.config/rtv/
 !/.config/user-dirs.dirs
 !/.config/dunst/
+/bin/*
+!/bin/theme-toggle.sh
