@@ -3,7 +3,7 @@ rofi.modi:                           window,run,ssh,drun
 rofi.width:                          80
 rofi.lines:                          10
 rofi.columns:                        2
-rofi.font:                           mononoki 32
+rofi.font:                           Iosevka Term 32
 rofi.bw:                             0
 rofi.location:                       0
 rofi.padding:                        30

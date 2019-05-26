@@ -182,6 +182,11 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# colors from pywal
+
+set_from_resource $glow i3wm.color6 #f0f0f0
+
+
 # bindings
 
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo xbacklight -inc 10
@@ -199,6 +204,7 @@ bindsym --release $mod+equal exec --no-startup-id import ~/pictures/$(date +%F-%
 exec --no-startup-id compton -i 0.9 -bcCG --shadow-radius 60 -l -60 -t -60 --shadow-red 0.8 --shadow-green 0.0 --shadow-blue 1.0 --shadow-exclude '!focused' &
 exec --no-startup-id redshift
 exec --no-startup-id polybar mypolybar
+exec --no-startup-id dunst
 exec --no-startup-id sudo powertop --auto-tune
 exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Scrolling Distance' -30 -30
 exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Palm Detection' 1
