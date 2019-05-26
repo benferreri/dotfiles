@@ -80,11 +80,14 @@ format-connected = <ramp-signal>
 format-connected-underline = #9f78e1
 label-connected = 
 
-format-disconnected =
+format-disconnected-background = ${colors.mod-bkg}
+format-disconnected-foreground = ${colors.mod-frg}
+label-disconnected = "%{A1:cmst:}%{T3}睊%{T-}%{A}"
+format-disconnected = <label-disconnected>
 
-ramp-signal-0 = "%{A1:cmst:}%{T3}%{T-}%{A}"
-ramp-signal-1 = "%{A1:cmst:}%{T3}%{T-}%{A}"
-ramp-signal-2 = "%{A1:cmst:}%{T3}%{T-}%{A}"
+ramp-signal-0 = "%{A1:cmst:}%{T3}直%{T-}%{A}"
+ramp-signal-1 = "%{A1:cmst:}%{T3}直%{T-}%{A}"
+ramp-signal-2 = "%{A1:cmst:}%{T3}直%{T-}%{A}"
 
 [module/eth]
 type = internal/network
@@ -93,9 +96,17 @@ interval = 3.0
 
 label-connected-foreground = ${colors.mod-frg}
 label-connected-background = ${colors.mod-bkg}
-label-connected = "%{A1:cmst:} %{T2}%{T-} %{A}"
+label-connected = "%{A1:cmst:}%{T2}%{T-}%{A}"
 
-format-disconnected =
+label-disconnected-foreground = ${colors.mod-frg}
+label-disconnected-background = ${colors.mod-bkg}
+label-disconnected = "%{A1:cmst:}%{T2}%{T-}%{A}"
+
+[module/music]
+type = custom/text
+content-foreground = ${colors.mod-frg}
+content-background = ${colors.mod-bkg}
+content = "%{A1:mpdnotify:}%{T2}ﱘ%{T-}%{A}"
 
 [module/date]
 type = internal/date
@@ -116,7 +127,7 @@ type = internal/pulseaudio
 
 format-volume-foreground = ${colors.mod-frg}
 format-volume-background = ${colors.mod-bkg}
-format-volume = "<label-volume> <bar-volume>"
+format-volume = <label-volume>
 label-volume = " %{T3}%{T-} %percentage%% "
 
 label-muted-foreground = ${colors.mod-frg}
@@ -242,19 +253,19 @@ content-foreground = ${colors.mod-bkg}
 
 [module/left-start]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}"
+content = "%{T2}%{T-}"
 
 [module/left-end]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}"
+content = "%{T2}%{T-}"
 
 [module/right-start]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}"
+content = "%{T2}%{T-}"
 
 [module/right-end]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}"
+content = "%{T2}%{T-}"
 
 [module/rofi]
 type = custom/text
@@ -273,8 +284,8 @@ margin-bottom = 5
 
 [bar/mypolybar]
 bottom = false
-dock = false
 width = 100%
+dock = false
 height = 60
 offset-x = 0
 offset-y = 0
@@ -295,13 +306,14 @@ border-color = #00000000
 
 font-0 = "Iosevka Term:pixelsize=28;5"
 font-1 = "Iosevka Term:pixelsize=48;8"
-font-2 = "Iosevka Term:pixelsize=68;12"
+font-2 = "Iosevka Term:pixelsize=68;14"
 font-3 = "Iosevka Term:pixelsize=38;6"
 
-modules-left = rofi left-end left-start wlan left-end eth xwindow
+modules-left = rofi left-end left-start wlan left-end left-start eth left-end left-start music left-end xwindow
 modules-center = i3
 modules-right = right-start pulseaudio right-end right-start battery right-end right-start date right-end right-start powermenu
 module-margin = 0
+
 fixed-center = true
 
 tray-position = none
