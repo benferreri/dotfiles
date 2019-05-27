@@ -1,0 +1,9 @@
+# GIMP action-history
+
+(history-item "file-quit" 3)
+(history-item "file-export-as" 1)
+(history-item "file-open" 0)
+(history-item "file-open-as-layers" 0)
+(history-item "script-fu-addborder" 1)
+
+# end of action-history

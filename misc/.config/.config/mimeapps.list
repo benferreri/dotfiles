@@ -1,0 +1,9 @@
+[Default Applications]
+x-scheme-handler/mailto=userapp-Thunderbird-VEHV0Z.desktop
+message/rfc822=userapp-Thunderbird-VEHV0Z.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=userapp-Thunderbird-VEHV0Z.desktop;
+message/rfc822=userapp-Thunderbird-VEHV0Z.desktop;
+unknown/unknown=vim.desktop;
+application/pdf=org.gnome.Evince.desktop;
