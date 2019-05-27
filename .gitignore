@@ -1,10 +1,13 @@
 /*
+!/bash
+!/default-dirs
 !/dunst/
 !/i3/
+!/ncmpcpp/
 !/polybar/
 !/powerline/
 !/ranger/
 !/rofi/
-!/theming
-!/vim
-!/xresources
+!/theming/
+!/vim/
+!/xresources/
