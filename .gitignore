@@ -3,6 +3,13 @@
 !/default-dirs
 !/dunst/
 !/i3/
+!/mpd
+/mpd/*
+!/mpd/.config
+/mpd/.config/*
+!/mpd/.config/mpd
+/mpd/.config/mpd/*
+!/mpd/.config/mpd/mpd.conf
 !/ncmpcpp/
 !/polybar/
 !/powerline/
