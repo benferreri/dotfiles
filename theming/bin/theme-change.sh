@@ -31,5 +31,10 @@ wal -i ${WALLPAPERDIR}${IMG} -b 444444
 # change powerline color
 sed -i "43 s/\(\"bg\":\) \(\"[^,]*\"\),/\1 \"$PWRCOLOR\",/" $HOME/.config/powerline/default.json
 
+# change compton shadow color
+. $HOME/.config/compton/colorswitch.sh
+pkill compton
+compton &
+
 # reset dunst; it breaks for some reason after change
 pkill dunst
