@@ -202,7 +202,7 @@ bindsym --release $mod+equal exec --no-startup-id import ~/pictures/$(date +%F-%
 
 # startup
 
-exec --no-startup-id compton -i 0.9 -bcCG --shadow-radius 60 -l -60 -t -60 --shadow-red 0.8 --shadow-green 0.0 --shadow-blue 1.0 --shadow-exclude '!focused' &
+exec --no-startup-id compton -b &
 exec --no-startup-id redshift
 exec --no-startup-id polybar mypolybar
 exec --no-startup-id dunst
