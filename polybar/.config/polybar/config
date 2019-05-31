@@ -6,7 +6,7 @@
 ;==========================================================
 
 [colors]
-include-file = /home/ben/.config/polybar/colors-space
+include-file = /home/ben/.config/polybar/colors-fjord
 
 [module/xwindow]
 type = internal/xwindow
@@ -25,14 +25,14 @@ label-mode-background = ${colors.primary}
 
 label-focused = %index%
 label-focused-background = ${colors.primary}
-label-focused-foreground = ${colors.mod-bkg}
+label-focused-foreground = ${colors.secondary}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 1
 
 label-unfocused = %index%
 label-unfocused-padding = 1
-label-unfocused-background = ${colors.mod-bkg}
-label-unfocused-foreground = ${colors.mod-frg}
+label-unfocused-background = ${colors.secondary}
+label-unfocused-foreground = ${colors.primary}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
