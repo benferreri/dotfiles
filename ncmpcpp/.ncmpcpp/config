@@ -312,7 +312,7 @@ execute_on_song_change = "mpdnotify"
 #
 #seek_time = 1
 #
-#volume_change_step = 2
+volume_change_step = 5
 #
 #autocenter_mode = no
 #
@@ -477,7 +477,7 @@ execute_on_song_change = "mpdnotify"
 #
 #search_engine_default_search_mode = 1
 #
-#external_editor = nano
+external_editor = vim
 #
 ## Note: set to yes if external editor is a console application.
 ##
@@ -513,27 +513,27 @@ execute_on_song_change = "mpdnotify"
 ## are used there is a possibility that you'll be able to use only colors with
 ## transparent background.
 #
-#colors_enabled = yes
+colors_enabled = yes
 #
-#empty_tag_color = cyan
+empty_tag_color = 7
 #
 #header_window_color = default
 #
 #volume_color = default
 #
-#state_line_color = default
+state_line_color = 7
 #
 #state_flags_color = default:b
 #
-#main_window_color = yellow
+main_window_color = 6
 #
-#color1 = white
+color1 = 6
 #
-#color2 = green
+color2 = 5
 #
-#progressbar_color = black:b
+progressbar_color = 4:b
 #
-#progressbar_elapsed_color = green:b
+progressbar_elapsed_color = 6:b
 #
 #statusbar_color = default
 #
@@ -541,9 +541,9 @@ execute_on_song_change = "mpdnotify"
 #
 #player_state_color = default:b
 #
-#alternative_ui_separator_color = black:b
+alternative_ui_separator_color = 4:b
 #
 #window_border_color = green
 #
-#active_window_border = red
+active_window_border = 7
 #
