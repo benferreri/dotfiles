@@ -199,6 +199,8 @@ bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym --release $mod+equal exec --no-startup-id import ~/pictures/$(date +%F-%S).png
+bindsym $mod+F7 exec --no-startup-id mpdnotify
+bindsym $mod+comma sticky toggle
 
 # startup
 
