@@ -6,7 +6,7 @@
 ;==========================================================
 
 [colors]
-include-file = /home/ben/.config/polybar/colors-fjord
+include-file = /home/ben/.config/polybar/colors-snow-mountain
 
 [module/xwindow]
 type = internal/xwindow
@@ -76,12 +76,12 @@ label-connected =
 
 format-disconnected-background = ${colors.mod-bkg}
 format-disconnected-foreground = ${colors.mod-frg}
-label-disconnected = "%{A1:cmst:}%{T3}睊%{T-}%{A}"
+label-disconnected = "%{A1:cmst:} %{T3}睊%{T-} %{A}"
 format-disconnected = <label-disconnected>
 
-ramp-signal-0 = "%{A1:cmst:}%{T3}直%{T-}%{A}"
-ramp-signal-1 = "%{A1:cmst:}%{T3}直%{T-}%{A}"
-ramp-signal-2 = "%{A1:cmst:}%{T3}直%{T-}%{A}"
+ramp-signal-0 = "%{A1:cmst:} %{T3}直%{T-} %{A}"
+ramp-signal-1 = "%{A1:cmst:} %{T3}直%{T-} %{A}"
+ramp-signal-2 = "%{A1:cmst:} %{T3}直%{T-} %{A}"
 
 [module/eth]
 type = internal/network
@@ -100,19 +100,19 @@ label-disconnected = "%{A1:cmst:}%{T2}%{T-}%{A}"
 type = custom/text
 content-foreground = ${colors.mod-frg}
 content-background = ${colors.mod-bkg}
-content = "%{A1:mpdnotify:}%{T2}ﱘ%{T-}%{A}"
+content = "%{A1:mpdnotify:} %{T2}ﱘ%{T-} %{A}"
 
 [module/date]
 type = internal/date
 interval = 1
 
 date =
-date-alt = "%Y-%m-%d"
+date-alt = "%Y-%m-%d "
 
 time = "%I:%M %p"
 time-alt = "%H:%M:%S"
 
-label = "%date% %time%"
+label = "%date%%time%"
 label-background = ${colors.mod-bkg}
 label-foreground = ${colors.mod-frg}
 
@@ -163,7 +163,7 @@ format-charging-underline = #ffb52a
 format-discharging-foreground = ${colors.mod-frg}
 format-discharging-background = ${colors.mod-bkg}
 label-discharging-foreground = ${colors.mod-frg}
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = "<ramp-capacity> <label-discharging> "
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-foreground = ${colors.mod-frg}
@@ -173,16 +173,16 @@ format-full-suffix =
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-foreground = ${colors.mod-frg}
-ramp-capacity-0 = "%{T4}%{T-} "
-ramp-capacity-1 = "%{T4}%{T-} "
-ramp-capacity-2 = "%{T4}%{T-} "
-ramp-capacity-3 = "%{T4}%{T-} "
-ramp-capacity-4 = "%{T4}%{T-} "
-ramp-capacity-5 = "%{T4}%{T-} "
-ramp-capacity-6 = "%{T4}%{T-} "
-ramp-capacity-7 = "%{T4}%{T-} "
-ramp-capacity-8 = "%{T4}%{T-} "
-ramp-capacity-9 = "%{T4}%{T-} "
+ramp-capacity-0 = " %{T4}%{T-}"
+ramp-capacity-1 = " %{T4}%{T-}"
+ramp-capacity-2 = " %{T4}%{T-}"
+ramp-capacity-3 = " %{T4}%{T-}"
+ramp-capacity-4 = " %{T4}%{T-}"
+ramp-capacity-5 = " %{T4}%{T-}"
+ramp-capacity-6 = " %{T4}%{T-}"
+ramp-capacity-7 = " %{T4}%{T-}"
+ramp-capacity-8 = " %{T4}%{T-}"
+ramp-capacity-9 = " %{T4}%{T-}"
 
 animation-charging-0 = 
 animation-charging-1 = 
@@ -222,7 +222,7 @@ format-background = ${colors.mod-bkg}
 format-foreground = ${colors.mod-frg}
 
 label-open = "%{T2}%{T-} "
-label-close = " close"
+label-close = "close"
 label-separator = |
 
 menu-0-0 = "reboot"
@@ -242,24 +242,36 @@ menu-2-1-exec = menu-open-0
 
 [module/decor-glyph]
 type = custom/text
-content-background = ${colors.bar-bkg}
-content-foreground = ${colors.mod-bkg}
+content-background = ${colors.mod-bkg}
+content-foreground = ${colors.bar-bkg}
 
 [module/left-start]
 inherit = module/decor-glyph
-content = "%{T2}%{T-}"
+content = "%{T2}%{T-}"
 
 [module/left-end]
 inherit = module/decor-glyph
-content = "%{T2}%{T-}"
+content = "%{T2}%{T-}"
+
+[module/left-edge]
+type = custom/text
+content-background = ${colors.bar-bkg}
+content-foreground = ${colors.mod-bkg}
+content = "%{T1}%{T-}"
 
 [module/right-start]
 inherit = module/decor-glyph
-content = "%{T2}%{T-}"
+content = "%{T2}%{T-}"
 
 [module/right-end]
 inherit = module/decor-glyph
-content = "%{T2}%{T-}"
+content = "%{T2}%{T-}"
+
+[module/right-edge]
+type = custom/text
+content-background = ${colors.bar-bkg}
+content-foreground = ${colors.mod-bkg}
+content = "%{T1}%{T-}"
 
 [module/rofi]
 type = custom/text
@@ -267,7 +279,7 @@ type = custom/text
 content-background = ${colors.mod-bkg}
 content-foreground = ${colors.mod-frg}
 
-content = "%{A1:rofi -show drun:} %{T2}%{T-}%{A}"
+content = "%{A1:rofi -show drun:} %{T2}%{T-}%{A} "
 
 [settings]
 screenchange-reload = true
@@ -303,9 +315,9 @@ font-1 = "Iosevka Term:pixelsize=48;8"
 font-2 = "Iosevka Term:pixelsize=68;14"
 font-3 = "Iosevka Term:pixelsize=38;6"
 
-modules-left = rofi left-end left-start wlan left-end left-start eth left-end left-start music left-end xwindow
+modules-left = rofi left-end left-start wlan left-end left-start eth left-end left-start music left-end left-edge xwindow
 modules-center = i3
-modules-right = right-start pulseaudio right-end right-start battery right-end right-start date right-end right-start powermenu
+modules-right = right-edge right-start pulseaudio right-end right-start battery right-end right-start date right-end right-start powermenu
 module-margin = 0
 
 fixed-center = true
