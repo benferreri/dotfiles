@@ -36,5 +36,9 @@ sed -i "43 s/\(\"bg\":\) \(\"[^,]*\"\),/\1 \"$PWRCOLOR\",/" $HOME/.config/powerl
 pkill compton
 compton &
 
+# change rofi selection color
+. $HOME/.cache/wal/colors.sh
+sed -i "s/\(emphasis:.*\)\(#[a-zA-Z0-9]\{6\};\)/\1"$color3";/" $HOME/.config/rofi/onedark.rasi
+
 # reset dunst; it breaks for some reason after change
 pkill dunst
