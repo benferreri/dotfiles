@@ -306,7 +306,7 @@ execute_on_song_change = "mpdnotify"
 #
 #discard_colors_if_item_is_selected = yes
 #
-#show_duplicate_tags = yes
+show_duplicate_tags = no
 #
 #incremental_seeking = yes
 #

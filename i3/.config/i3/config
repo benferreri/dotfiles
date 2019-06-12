@@ -201,6 +201,7 @@ bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym --release $mod+equal exec --no-startup-id import ~/pictures/$(date +%F-%S).png
 bindsym $mod+F7 exec --no-startup-id mpdnotify
 bindsym $mod+comma sticky toggle
+bindsym $mod+period resize set 1270 950; move position 2600 1220; sticky toggle
 
 # startup
 

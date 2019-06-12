@@ -6,7 +6,7 @@
 ;==========================================================
 
 [colors]
-include-file = /home/ben/.config/polybar/colors-snow-mountain
+include-file = /home/ben/.config/polybar/colors-fjord
 
 [module/xwindow]
 type = internal/xwindow
