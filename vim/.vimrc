@@ -109,6 +109,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'yggdroot/indentline'
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -131,3 +132,8 @@ map <C-n> :NERDTreeToggle<cr>
 set rtp+=/usr/lib/python3.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
+
+"vimtex
+let g:vimtex_view_method = 'zathura'
+let g:tex_flavor = 'latex'
+let g:vimtex_compiler_progname = 'latexmk'

@@ -1,5 +1,8 @@
 /*
 !/bash/
+!/beets
+/beets/*
+!/beets/year-editor.sh
 !/compton/
 !/default-dirs/
 !/dunst/

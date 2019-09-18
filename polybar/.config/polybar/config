@@ -6,7 +6,7 @@
 ;==========================================================
 
 [colors]
-include-file = /home/ben/.config/polybar/colors-road
+include-file = /home/ben/.config/polybar/colors-lion
 
 [module/xwindow]
 type = internal/xwindow
@@ -76,12 +76,12 @@ label-connected =
 
 format-disconnected-background = ${colors.mod-bkg}
 format-disconnected-foreground = ${colors.mod-frg}
-label-disconnected = "%{A1:cmst:} %{T3}睊%{T-} %{A}"
+label-disconnected = "%{A1:nm-connection-editor:} %{T3}睊%{T-} %{A}"
 format-disconnected = <label-disconnected>
 
-ramp-signal-0 = "%{A1:cmst:} %{T3}直%{T-} %{A}"
-ramp-signal-1 = "%{A1:cmst:} %{T3}直%{T-} %{A}"
-ramp-signal-2 = "%{A1:cmst:} %{T3}直%{T-} %{A}"
+ramp-signal-0 = "%{A1:nm-connection-editor:} %{T3}直%{T-} %{A}"
+ramp-signal-1 = "%{A1:nm-connection-editor:} %{T3}直%{T-} %{A}"
+ramp-signal-2 = "%{A1:nm-connection-editor:} %{T3}直%{T-} %{A}"
 
 [module/eth]
 type = internal/network
@@ -90,11 +90,11 @@ interval = 3.0
 
 label-connected-foreground = ${colors.mod-frg}
 label-connected-background = ${colors.mod-bkg}
-label-connected = "%{A1:cmst:}%{T2}%{T-}%{A}"
+label-connected = "%{A1:nm-connection-editor:}%{T2}%{T-}%{A}"
 
 label-disconnected-foreground = ${colors.mod-frg}
 label-disconnected-background = ${colors.mod-bkg}
-label-disconnected = "%{A1:cmst:}%{T2}%{T-}%{A}"
+label-disconnected = "%{A1:nm-connection-editor:}%{T2}%{T-}%{A}"
 
 [module/music]
 type = custom/text
@@ -158,6 +158,7 @@ full-at = 98
 format-charging-foreground = ${colors.mod-frg}
 format-charging-background = ${colors.mod-bkg}
 format-charging = <animation-charging> <label-charging>
+label-charging-foreground = ${colors.mod-frg}
 format-charging-underline = #ffb52a
 
 format-discharging-foreground = ${colors.mod-frg}
