@@ -190,6 +190,7 @@ set_from_resource $glow i3wm.color6 #f0f0f0
 
 # bindings
 
+bindsym $mod+Shift+Escape exec --no-startup-id i3lock
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo xbacklight -dec 10
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up

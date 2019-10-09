@@ -110,6 +110,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'yggdroot/indentline'
 Plug 'lervag/vimtex'
+Plug 'flrnprz/candid.vim'
+Plug 'AlessandroYorba/Breve'
 
 call plug#end()
 
@@ -119,8 +121,11 @@ let g:easyescape_timeout = 100
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 
-"pywal
-colorscheme wal
+let g:solarized_termcolors=16
+set t_Co=256
+"colorscheme
+"colorscheme wal
+colorscheme candid
 
 " ycm
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/ycm_extra_conf/ycm_extra_conf.py'
@@ -131,7 +136,6 @@ map <C-n> :NERDTreeToggle<cr>
 " powerline
 set rtp+=/usr/lib/python3.7/site-packages/powerline/bindings/vim/
 set laststatus=2
-set t_Co=256
 
 "vimtex
 let g:vimtex_view_method = 'zathura'

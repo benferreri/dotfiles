@@ -8,6 +8,8 @@ if [ $# -ge 1 ]; then
     IMGNAME=$(echo $IMG | sed 's/\([a-z,A-Z,0-9]*\)\..*/\1/')
     if [ $# -eq 2 ]; then
         PWRCOLOR=$2
+    elif [ -f ${WALLPAPERDIR}${IMGNAME}.conf ]; then
+        { read -r PWRCOLOR; read -r BGCOLOR; read -r WALARGS; } < ${WALLPAPERDIR}${IMGNAME}.conf       # reads lines of file into variables
     else
         PWRCOLOR=yellow # default
     fi
@@ -26,7 +28,11 @@ else
 fi
 
 # pywal
-wal -i ${WALLPAPERDIR}${IMG} -b 444444
+if [ -z ${BGCOLOR+x} ]; then
+    wal -i ${WALLPAPERDIR}${IMG} -b 444444
+else
+    wal $WALARGS -i ${WALLPAPERDIR}${IMG} -b $BGCOLOR
+fi
 
 # change powerline color
 sed -i "43 s/\(\"bg\":\) \(\"[^,]*\"\),/\1 \"$PWRCOLOR\",/" $HOME/.config/powerline/default.json

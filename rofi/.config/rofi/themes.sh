@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z $@ ]; then
-    echo current; ls $HOME/pictures/wallpapers
+    echo current; ls --ignore=*.conf $HOME/pictures/wallpapers
 else
     THEMES=$@
     if [ x"current" = x"${THEMES}" ]; then
