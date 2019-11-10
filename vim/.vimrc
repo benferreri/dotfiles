@@ -99,6 +99,13 @@ highlight Normal ctermfg=White
 
 
 "plugins
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'zhou13/vim-easyescape'
@@ -111,7 +118,7 @@ Plug 'tpope/vim-sensible'
 Plug 'yggdroot/indentline'
 Plug 'lervag/vimtex'
 Plug 'flrnprz/candid.vim'
-Plug 'AlessandroYorba/Breve'
+Plug 'severij/vadelma'
 
 call plug#end()
 
@@ -121,11 +128,13 @@ let g:easyescape_timeout = 100
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 
-let g:solarized_termcolors=16
+"let g:solarized_termcolors=16
 set t_Co=256
 "colorscheme
 "colorscheme wal
 colorscheme candid
+"colorscheme vadelma
+"set background=light
 
 " ycm
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/ycm_extra_conf/ycm_extra_conf.py'

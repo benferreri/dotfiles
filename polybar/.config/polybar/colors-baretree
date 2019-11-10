@@ -1,0 +1,7 @@
+bar-bkg = ${xrdb:color0:#222}
+bar-frg = ${xrdb:color6:#222}
+mod-bkg = ${xrdb:color4:#222}
+mod-frg = ${xrdb:color1:#222}
+primary = ${xrdb:color7:#222}
+secondary = ${xrdb:color3:#222}
+alert = ${xrdb:color4:#222}
