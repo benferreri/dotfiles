@@ -203,6 +203,8 @@ bindsym --release Print exec --no-startup-id import ~/pictures/$(date +%F-%S).pn
 bindsym $mod+F7 exec --no-startup-id mpdnotify
 bindsym $mod+comma sticky toggle
 bindsym $mod+period resize set 1270 950; move position 2600 1220; sticky toggle
+bindsym $mod+slash exec --no-startup-id urxvt -geometry 90x6 -name "floating_urxvt"
+for_window [class="URxvt" instance="floating_urxvt$"] floating toggle
 
 # startup
 

@@ -6,7 +6,7 @@
 ;==========================================================
 
 [colors]
-include-file = /home/ben/.config/polybar/colors-rock
+include-file = /home/ben/.config/polybar/colors-baretree
 
 [module/xwindow]
 type = internal/xwindow
