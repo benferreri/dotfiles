@@ -1,8 +1,19 @@
 #!/bin/bash
 
+# usage: theme-change <IMAGE> <POWERLINE-COLOR>
+#
+# dependencies:
+#       polybar
+#       pywal
+#       powerline
+#       compton
+#       rofi
+#
+# comment out appropriate sections of the script to remove
+# unwanted dependencies
+
 WALLPAPERDIR=$HOME/pictures/wallpapers/
 
-# usage: theme-change <IMAGE> <POWERLINE-COLOR>
 if [ $# -ge 1 ]; then
     IMG=$1
     IMGNAME=$(echo $IMG | sed 's/\([a-z,A-Z,0-9]*\)\..*/\1/')
