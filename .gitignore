@@ -17,7 +17,13 @@
 !/ncmpcpp/
 !/polybar/
 !/powerline/
-!/ranger/
+!/ranger
+/ranger/*
+!/ranger/.config
+/ranger/.config/*
+!/ranger/.config/ranger
+/ranger/.config/ranger/*
+!/ranger/.config/ranger/*.conf
 !/rofi/
 !/theming/
 !/vim/
