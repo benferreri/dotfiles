@@ -1,4 +1,4 @@
 URxvt*font: xft:Iosevka Term:style=Light:size=18, xft:symbola:size=18, xft:unicode-emoji:size=18
 URxvt*scrollBar: false
-URxvt*internalBorder: 24
+URxvt*internalBorder: 36
 Xft.dpi: 192

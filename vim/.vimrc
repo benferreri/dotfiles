@@ -84,22 +84,23 @@ nnoremap <C-L> :nohl<CR><C-L>
 let mapleader = " "
 let g:mapleader = " "
 
-"easier write
+" easier write
 nmap <leader>w :w<cr>
 
-"easier quit
+" easier quit
 nmap <leader>q :q<cr>
 
-"move between tabs
+" move between tabs
 map <A-h> :tabp<cr>
 map <A-l> :tabn<cr>
 
-"colors
+" colors
 highlight Normal ctermfg=White
 
 
-"plugins
+" plugins
 
+" install vim-plug if not yet installed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -122,15 +123,16 @@ Plug 'severij/vadelma'
 
 call plug#end()
 
-"easy escape
+" easy escape
 let g:easyescape_chars = { "j": 1, "k": 1 }
 let g:easyescape_timeout = 100
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 
-"let g:solarized_termcolors=16
+" colorscheme
+
+" let g:solarized_termcolors=16
 set t_Co=256
-"colorscheme
 "colorscheme wal
 colorscheme candid
 "colorscheme vadelma
@@ -146,7 +148,7 @@ map <C-n> :NERDTreeToggle<cr>
 set rtp+=/usr/lib/python3.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 
-"vimtex
+" vimtex
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'latexmk'

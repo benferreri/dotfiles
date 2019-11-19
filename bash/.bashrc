@@ -117,3 +117,11 @@ fi
 
 # pywal
 (cat ~/.cache/wal/sequences &)
+
+#fzf
+if [ -f /usr/share/fzf/key-bindings.bash ]; then
+    . /usr/share/fzf/key-bindings.bash
+fi
+if [ -f /usr/share/fzf/completion.bash ]; then
+    . /usr/share/fzf/completion.bash
+fi

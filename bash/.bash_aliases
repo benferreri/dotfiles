@@ -1,5 +1,6 @@
-alias music="mpd && yams && mpdcron && ncmpcpp"
+alias music="mpd && yams && mpdcron && pulseeffects --gapplication-service && ncmpcpp"
 alias rm="rm -i"
 alias vpn="sudo restart-vpn"
 alias sm="rsync -av --progress --delete /home/ben/music/beets/ pi@strawberryjams:/media/pi/music/"
 alias jc="javac -d bin/ src/*.java"
+alias findpkg="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
