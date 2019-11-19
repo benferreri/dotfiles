@@ -1,6 +1,6 @@
 # dotfiles
 
-config files
+config files and some shell scripts
 
 best installed with GNU Stow. with stow installed:  
 ```
