@@ -145,7 +145,7 @@ let g:ycm_global_ycm_extra_conf = '$HOME/.vim/ycm_extra_conf/ycm_extra_conf.py'
 map <C-n> :NERDTreeToggle<cr>
 
 " powerline
-set rtp+=/usr/lib/python3.7/site-packages/powerline/bindings/vim/
+set rtp+=/usr/lib/python3.8/site-packages/powerline/bindings/vim/
 set laststatus=2
 
 " vimtex

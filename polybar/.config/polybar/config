@@ -6,7 +6,7 @@
 ;==========================================================
 
 [colors]
-include-file = /home/ben/.config/polybar/colors-watercolor-mountain
+include-file = /home/ben/.config/polybar/colors-pinktree
 
 [module/xwindow]
 type = internal/xwindow

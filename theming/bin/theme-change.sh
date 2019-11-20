@@ -46,7 +46,7 @@ else
 fi
 
 # change powerline color
-sed -i "43 s/\(\"bg\":\) \(\"[^,]*\"\),/\1 \"$PWRCOLOR\",/" $HOME/.config/powerline/default.json
+sed -i "43 s/\(\"bg\":\) \(\"[^,]*\"\),/\1 \"$PWRCOLOR\",/" $HOME/.config/powerline/colorschemes/default.json
 
 # change compton shadow color
 . $HOME/.config/compton/colorswitch.sh
