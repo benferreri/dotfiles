@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $# -gt 0 ]; then
+    NAME=$1.tex
+else
+    NAME=${PWD##*/}.tex
+fi
+if [ ! -f $NAME ]; then
+    cp ${HOME}/documents/other/sample-hw.tex $NAME
+fi
+vim --servername VIM $NAME

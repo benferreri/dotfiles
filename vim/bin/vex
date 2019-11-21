@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $# -gt 0 ]; then
+    vim --servername VIM $1.tex
+else
+    vim --servername VIM ${PWD##*/}.tex
+fi
