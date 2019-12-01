@@ -24,3 +24,5 @@ fi
 # start pywal
 wal -R
 export BAT_THEME="OneHalfDark"
+
+export QSYS_ROOTDIR="/mnt/shared/ben/builds/quartus-free/pkg/quartus-free/mnt/shared/opt/altera/19.1/quartus/sopc_builder/bin"

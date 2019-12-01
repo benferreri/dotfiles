@@ -125,3 +125,5 @@ fi
 if [ -f /usr/share/fzf/completion.bash ]; then
     . /usr/share/fzf/completion.bash
 fi
+
+export QSYS_ROOTDIR="/mnt/shared/ben/builds/quartus-free/pkg/quartus-free/mnt/shared/opt/altera/19.1/quartus/sopc_builder/bin"
