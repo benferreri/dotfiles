@@ -208,7 +208,7 @@ for_window [class="URxvt" instance="floating_urxvt$"] floating toggle
 
 # startup
 
-exec --no-startup-id compton -b &
+exec --no-startup-id picom -b &
 exec --no-startup-id redshift
 exec --no-startup-id polybar mypolybar
 exec --no-startup-id dunst

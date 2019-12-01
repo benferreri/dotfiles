@@ -3,7 +3,7 @@
 !/beets
 /beets/*
 !/beets/year-editor.sh
-!/compton/
+!/picom/
 !/default-dirs/
 !/dunst/
 !/firefox/

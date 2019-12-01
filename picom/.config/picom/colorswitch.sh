@@ -11,7 +11,7 @@ shadowred=$(echo "ibase=16; scale=2; x=${shadowhex:0:2}/FF; if(x<1) print 0; x" 
 shadowgreen=$(echo "ibase=16; scale=2; x=${shadowhex:2:2}/FF; if(x<1) print 0; x" | bc)
 shadowblue=$(echo "ibase=16; scale=2; x=${shadowhex:4:2}/FF; if(x<1) print 0; x" | bc)
 
-# replace values in compton.conf with new values, normalized to 1.0 scale
-sed -i "s/\(shadow-red = \)[01]\.[0-9]\{2\}/\1"${shadowred}"/" $HOME/.config/compton/compton.conf
-sed -i "s/\(shadow-green = \)[01]\.[0-9]\{2\}/\1"${shadowgreen}"/" $HOME/.config/compton/compton.conf
-sed -i "s/\(shadow-blue = \)[01]\.[0-9]\{2\}/\1"${shadowblue}"/" $HOME/.config/compton/compton.conf
+# replace values in picom.conf with new values, normalized to 1.0 scale
+sed -i "s/\(shadow-red = \)[01]\.[0-9]\{2\}/\1"${shadowred}"/" $HOME/.config/picom/picom.conf
+sed -i "s/\(shadow-green = \)[01]\.[0-9]\{2\}/\1"${shadowgreen}"/" $HOME/.config/picom/picom.conf
+sed -i "s/\(shadow-blue = \)[01]\.[0-9]\{2\}/\1"${shadowblue}"/" $HOME/.config/picom/picom.conf
