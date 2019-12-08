@@ -1,0 +1,52 @@
+#!/bin/bash
+
+DIRNAME=$1
+OPUS_DIR="converted"
+
+REMOTE_DIR=$(ssh pi@strawberryjams "ls -d /media/pi/torrents/seeding/$DIRNAME")
+echo the following directories have been selected. continue? [yN]
+echo $REMOTE_DIR
+read -e choice
+[[ "$choice" == [Yy]* ]] || exit 1
+
+echo copying files...
+scp -r pi@strawberryjams:/media/pi/torrents/seeding/"$DIRNAME" /home/ben/
+
+echo importing to beets...
+cd; beet import -t $DIRNAME
+
+MINUTEAGO=$(date -d '1 minute ago' -Iseconds)
+NOW=$(date -Iseconds)
+BEETSDIR=$(beet ls added:${MINUTEAGO::-6}..${NOW::-6} -a --path)
+
+if [ -z "$BEETSDIR" ]; then
+    echo import failed.
+    exit 1
+fi
+
+echo converting to opus...
+flac2all opus -o $OPUS_DIR --opus-options="bitrate 128:vbr" "$BEETSDIR"
+
+echo importing opus...
+beet import $OPUS_DIR/opus
+beet modify format:opus added:-1d.. opusdupe=1
+
+echo updating symlinks...
+beet alt update bestquality
+beet alt update smallest
+
+echo syncing to strawberryjams...
+rsync -av --progress --delete /home/ben/music/beets/ pi@strawberryjams:/media/pi/music/
+
+echo remove the following directories? [yN]
+ls $DIRNAME -d
+
+read -e choice
+[[ "$choice" == [Yy]* ]] && rm -rf $DIRNAME
+[[ "$choice" == [Yy]* ]] && echo directories removed. || echo did not remove any directories
+
+echo remove the following directories? [yN]
+echo ~/$OPUS_DIR/opus
+read -e choice
+[[ "$choice" == [Yy]* ]] && rm -rf ~/$OPUS_DIR/opus
+[[ "$choice" == [Yy]* ]] && echo directory removed. || echo did not remove the directory

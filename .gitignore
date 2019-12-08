@@ -15,6 +15,9 @@
 !/mpd/.config/mpd
 /mpd/.config/mpd/*
 !/mpd/.config/mpd/mpd.conf
+!/music_misc/
+/music_misc/*
+!/music_misc/bin/
 !/ncmpcpp/
 !/polybar/
 !/powerline/
