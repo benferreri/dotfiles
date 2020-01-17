@@ -1,19 +1,20 @@
 #!/bin/bash
 
-DIRNAME=$1
+REMOTE="pi@strawberryjams.student.case.edu"
+REMOTE_DOWN="/media/pi/torrents/seeding/"
+LOCAL_DOWN="incoming_music"
 OPUS_DIR="converted"
+REMOTE_BEETS="/media/pi/music/"
+LOCAL_BEETS="$HOME/music/beets/"
 
-REMOTE_DIR=$(ssh pi@strawberryjams "ls -d /media/pi/torrents/seeding/$DIRNAME")
-echo the following directories have been selected. continue? [yN]
-echo $REMOTE_DIR
-read -e choice
-[[ "$choice" == [Yy]* ]] || exit 1
+REMOTE_DIR=$(ssh $REMOTE "ls -t $REMOTE_DOWN" | fzf)
 
 echo copying files...
-scp -r pi@strawberryjams:/media/pi/torrents/seeding/"$DIRNAME" /home/ben/
+mkdir -p /home/ben/$LOCAL_DOWN/
+scp -r $REMOTE:"\"${REMOTE_DOWN}${REMOTE_DIR}\"" /home/ben/$LOCAL_DOWN/
 
 echo importing to beets...
-cd; beet import -t $DIRNAME
+cd; beet import -t $LOCAL_DOWN
 
 MINUTEAGO=$(date -d '1 minute ago' -Iseconds)
 NOW=$(date -Iseconds)
@@ -31,22 +32,40 @@ echo importing opus...
 beet import $OPUS_DIR/opus
 beet modify format:opus added:-1d.. opusdupe=1
 
+echo editing edition years...
+year-editor.sh edition_year::^$
+
 echo updating symlinks...
 beet alt update bestquality
 beet alt update smallest
 
-echo syncing to strawberryjams...
-rsync -av --progress --delete /home/ben/music/beets/ pi@strawberryjams:/media/pi/music/
+echo
+read -e -p "sync to remote? [Yn] " choice
+if [[ "$choice" == [Nn]* ]]; then
+    echo skipping sync.
+else
+    echo syncing to strawberryjams...
+    rsync -av --progress --delete $LOCAL_BEETS $REMOTE:$REMOTE_BEETS
+fi
 
+echo
 echo remove the following directories? [yN]
-ls $DIRNAME -d
-
+ls $LOCAL_DOWN
 read -e choice
-[[ "$choice" == [Yy]* ]] && rm -rf $DIRNAME
-[[ "$choice" == [Yy]* ]] && echo directories removed. || echo did not remove any directories
+if [[ "$choice" == [Yy]* ]]; then
+    rm -rf ~/$LOCAL_DOWN
+    echo directories removed.
+else
+    echo no directories removed.
+fi
 
-echo remove the following directories? [yN]
-echo ~/$OPUS_DIR/opus
+echo
+echo remove the following files? [yN]
+ls ~/$OPUS_DIR/opus
 read -e choice
-[[ "$choice" == [Yy]* ]] && rm -rf ~/$OPUS_DIR/opus
-[[ "$choice" == [Yy]* ]] && echo directory removed. || echo did not remove the directory
+if [[ "$choice" == [Yy]* ]]; then
+    rm -rf ~/$OPUS_DIR/opus
+    echo directory removed.
+else
+    echo no directories removed.
+fi

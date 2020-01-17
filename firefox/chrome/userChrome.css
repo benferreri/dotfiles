@@ -99,6 +99,10 @@ opacity:1 !important;
 opacity:1 !important;
 }
 
+#urlbar input.urlbar-input {
+    font-size: 36px !important;
+}
+
 
 #urlbar, .searchbar-textbox {
 	border: 0px !important;
