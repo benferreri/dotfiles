@@ -118,8 +118,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'yggdroot/indentline'
 Plug 'lervag/vimtex'
+Plug 'sheerun/vim-polyglot'
 Plug 'flrnprz/candid.vim'
 Plug 'severij/vadelma'
+Plug 'arzg/vim-colors-xcode'
+Plug 'kjssad/quantum.vim'
 
 call plug#end()
 
@@ -129,14 +132,21 @@ let g:easyescape_timeout = 100
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 
+" disable latex-box from vim-polyglot (use vimtex instead)
+let g:polyglot_disabled = ['latex']
+
 " colorscheme
 
 " let g:solarized_termcolors=16
-set t_Co=256
+"set t_Co=256
+set termguicolors
+"colorscheme quantum
+colorscheme xcodedark
 "colorscheme wal
-colorscheme candid
+"colorscheme candid
 "colorscheme vadelma
 "set background=light
+set background=dark
 
 " ycm
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/ycm_extra_conf/ycm_extra_conf.py'
