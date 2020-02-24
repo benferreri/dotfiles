@@ -19,26 +19,56 @@ fi
 
 # needed for loop to allow spaces within strings
 IFS=$'\n'; set -f
+
 # loop through songs matching query
-for song in $(beet ls $@ -f '$path'); do
-    echo "$song"
+for song_path in $(beet ls $@ -f '$path'); do
+    echo "$song_path"
     # get three year variables, including edition_year in case already set
-    YEARS=$(beet ls "$song" -f '$year-$edition_year-$original_year')
+    current_track_info=$(beet ls "$song_path" -f '$year-$edition_year-$original_year')
     IFS='-'
-    array=( $YEARS )
-    YEAR=${array[0]}
-    EDITION_YEAR=${array[1]}
-    ORIGINAL_YEAR=${array[2]}
+    current_track_info=( $current_track_info )
+    # year values on track level
+    year=${current_track_info[0]}
+    edition_year=${current_track_info[1]}
+    original_year=${current_track_info[2]}
     IFS=$'\n'
-    # set new values if necessary
-    if [ $EDITION_YEAR = '$edition_year' ]; then
-        beet modify -y "$song" edition_year=$YEAR
-        if [ $ORIGINAL_YEAR -gt 0 ]; then
-            beet modify -y "$song" year=$ORIGINAL_YEAR
+    
+    # set new track-level values if necessary
+    if [ $edition_year = '$edition_year' ]; then
+        beet modify -y "$song_path" edition_year=$year
+        if [ $original_year -gt 0 ]; then
+            beet modify -y "$song_path" year=$original_year
         fi
         echo
     else
-        echo "no changes needed"
+        echo "no track-level changes needed"
+        echo
+    fi
+    
+done
+
+# loop through albums matching query
+for album_path in $(beet ls -a $@ -f '$path'); do
+    echo "$album_path"
+    # get three year variables, including edition_year in case already set
+    current_album_info=$(beet ls -a "$album_path" -f '$year-$edition_year-$original_year')
+    IFS='-'
+    current_album_info=( $current_album_info )
+    # year values on album level
+    year_album=${current_album_info[0]}
+    edition_year_album=${current_album_info[1]}
+    original_year_album=${current_album_info[2]}
+    IFS=$'\n'
+    
+    # set new album-level values if necessary
+    if [ $edition_year_album = '$edition_year' ]; then
+        beet modify -a -y "$album_path" edition_year=$year_album
+        if [ $original_year_album -gt 0 ]; then
+            beet modify -a -y "$album_path" year=$original_year_album
+        fi
+        echo
+    else
+        echo "no album-level changes needed"
         echo
     fi
 done
