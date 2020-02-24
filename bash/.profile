@@ -26,3 +26,6 @@ wal -R
 export BAT_THEME="OneHalfDark"
 
 export QSYS_ROOTDIR="/mnt/shared/ben/builds/quartus-free/pkg/quartus-free/mnt/shared/opt/altera/19.1/quartus/sopc_builder/bin"
+
+# esp8266
+export IDF_PATH="$HOME/esp/ESP8266_RTOS_SDK"
