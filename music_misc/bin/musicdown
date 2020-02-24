@@ -32,9 +32,13 @@ echo importing opus...
 beet import $OPUS_DIR/opus
 beet modify format:opus added:-1d.. opusdupe=1
 
-echo editing edition years...
-year-editor.sh edition_year::^$
+echo tagging as unlistened...
+beet modify -W "$BEETSDIR" unlistened=true
+beet modify -W "${BEETSDIR:0:-5}Opus]/" unlistened=true
 
+echo editing edition years...
+year-editor.sh "$BEETSDIR"
+year-editor.sh "${BEETSDIR:0:-5}Opus]/"
 echo updating symlinks...
 beet alt update bestquality
 beet alt update smallest
@@ -45,7 +49,8 @@ if [[ "$choice" == [Nn]* ]]; then
     echo skipping sync.
 else
     echo syncing to strawberryjams...
-    rsync -av --progress --delete $LOCAL_BEETS $REMOTE:$REMOTE_BEETS
+    #rsync -av --progress --delete $LOCAL_BEETS $REMOTE:$REMOTE_BEETS
+    sm
 fi
 
 echo
