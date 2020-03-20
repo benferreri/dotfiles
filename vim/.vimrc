@@ -97,6 +97,14 @@ map <A-l> :tabn<cr>
 " colors
 highlight Normal ctermfg=White
 
+" relative line numbers
+set number relativenumber
+set relativenumber
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained * set relativenumber
+    autocmd BufLeave,FocusLost * set norelativenumber
+augroup END
 
 " plugins
 
@@ -162,3 +170,8 @@ set laststatus=2
 let g:vimtex_view_method = 'zathura'
 let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'latexmk'
+
+" current line number color
+highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+set cursorline
+hi CursorLineNR guibg=#2a2a2a guifg=#b7b0f2
