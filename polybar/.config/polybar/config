@@ -6,7 +6,7 @@
 ;==========================================================
 
 [colors]
-include-file = /home/ben/.config/polybar/colors-watercolor-mountain
+include-file = /home/ben/.config/polybar/colors-pinkclouds
 
 [module/xwindow]
 type = internal/xwindow
@@ -118,7 +118,7 @@ interval = 1
 date =
 date-alt = "%Y-%m-%d "
 
-time = "%I:%M %p"
+time = "%I:%M %p%"
 time-alt = "%H:%M:%S"
 
 label = "%date%%time%"
@@ -325,7 +325,7 @@ font-1 = "Iosevka Term:pixelsize=48;8"
 font-2 = "Iosevka Term:pixelsize=68;14"
 font-3 = "Iosevka Term:pixelsize=38;6"
 
-modules-left = rofi left-end left-start wlan left-end left-start eth left-end left-start music-button left-end left-edge xwindow
+modules-left = rofi left-end left-start wlan left-end left-start music-button left-end left-edge xwindow
 modules-center = i3
 modules-right = music-playing right-edge right-start pulseaudio right-end right-start battery right-end right-start date right-end right-start powermenu
 module-margin = 0
