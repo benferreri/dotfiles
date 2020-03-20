@@ -1,44 +1,69 @@
 #!/bin/bash
 
-REMOTE="pi@strawberryjams.student.case.edu"
-REMOTE_DOWN="/media/pi/torrents/seeding/"
-LOCAL_DOWN="incoming_music"
-OPUS_DIR="converted"
-REMOTE_BEETS="/media/pi/music/"
-LOCAL_BEETS="$HOME/music/beets/"
+remote="pi@strawberryjams.student.case.edu"
+remote_down="/media/pi/torrents/seeding/"
+local_down="incoming_music"
+opus_dir="converted"
+remote_beets="/media/pi/music/"
+local_beets="$HOME/music/beets/"
+logpath="$HOME/data/beets.log"
 
-REMOTE_DIR=$(ssh $REMOTE "ls -t $REMOTE_DOWN" | fzf)
+remote_dir=$(ssh $remote "ls -t $remote_down" | fzf)
 
 echo copying files...
-mkdir -p /home/ben/$LOCAL_DOWN/
-scp -r $REMOTE:"\"${REMOTE_DOWN}${REMOTE_DIR}\"" /home/ben/$LOCAL_DOWN/
+mkdir -p $HOME/$local_down/
+scp -r $remote:"\"${remote_down}${remote_dir}\"" $HOME/$local_down/
+
+# prefer CD (uncomment line in config) if there is a .log file
+if [ -f "$HOME/$local_down/$remote_dir"/*.log ]; then
+    echo preferring CD...
+    sed -i 's/#match/match/' $HOME/.config/beets/config.yaml
+    sed -i 's/#preferred/preferred/' $HOME/.config/beets/config.yaml
+    sed -i 's/#media/media/' $HOME/.config/beets/config.yaml
+fi
 
 echo importing to beets...
-cd; beet import -t $LOCAL_DOWN
+cd; beet import --set unlistened='true' -t -l "$logpath" "$local_down"
 
-MINUTEAGO=$(date -d '1 minute ago' -Iseconds)
-NOW=$(date -Iseconds)
-BEETSDIR=$(beet ls added:${MINUTEAGO::-6}..${NOW::-6} -a --path)
+minutesago=$(date -d '2 minutes ago' -Iseconds)
+now=$(date -Iseconds)
+beetsdir=$(beet ls added:${minutesago::-6}..${now::-6} -a --path)
 
-if [ -z "$BEETSDIR" ]; then
+if [ -z "$beetsdir" ]; then
     echo import failed.
+    # comment out preferred CD til next time
+    if [ -f "$local_down/$remote_dir/"*.log ]; then
+        sed -i 's/match/#match/' $HOME/.config/beets/config.yaml
+        sed -i 's/preferred/#preferred/' $HOME/.config/beets/config.yaml
+        sed -i 's/media/#media/' $HOME/.config/beets/config.yaml
+    fi
     exit 1
 fi
 
 echo converting to opus...
-flac2all opus -o $OPUS_DIR --opus-options="bitrate 128:vbr" "$BEETSDIR"
+flac2all opus -o "$opus_dir" --opus-options="bitrate 128:vbr" "$beetsdir"
 
 echo importing opus...
-beet import $OPUS_DIR/opus
-beet modify format:opus added:-1d.. opusdupe=1
+beet import --set unlistened='true' -l "$logpath" "$opus_dir/opus"
 
-echo tagging as unlistened...
-beet modify -W "$BEETSDIR" unlistened=true
-beet modify -W "${BEETSDIR:0:-5}Opus]/" unlistened=true
+# comment out preferred CD til next time
+if [ -f "$local_down/$remote_dir/"*.log ]; then
+    sed -i 's/match/#match/' $HOME/.config/beets/config.yaml
+    sed -i 's/preferred/#preferred/' $HOME/.config/beets/config.yaml
+    sed -i 's/media/#media/' $HOME/.config/beets/config.yaml
+fi
+
+#echo marking tracks unlistened...
+#beet modify -y unlistened='true' "$beetsdir"
+#beet modify -y unlistened='true' "${beetsdir:0:-5}Opus]/"
+
+echo assigning album-level format field...
+beet modify -y -a format='FLAC' "$beetsdir"
+beet modify -y -a format='Opus' "${beetsdir:0:-5}Opus]/"
 
 echo editing edition years...
-year-editor.sh "$BEETSDIR"
-year-editor.sh "${BEETSDIR:0:-5}Opus]/"
+year-editor.sh "$beetsdir"
+year-editor.sh "${beetsdir:0:-5}Opus]/"
 echo updating symlinks...
 beet alt update bestquality
 beet alt update smallest
@@ -49,16 +74,15 @@ if [[ "$choice" == [Nn]* ]]; then
     echo skipping sync.
 else
     echo syncing to strawberryjams...
-    #rsync -av --progress --delete $LOCAL_BEETS $REMOTE:$REMOTE_BEETS
-    sm
+    sm      # custom music-syncing command
 fi
 
 echo
 echo remove the following directories? [yN]
-ls $LOCAL_DOWN
+ls $local_down
 read -e choice
 if [[ "$choice" == [Yy]* ]]; then
-    rm -rf ~/$LOCAL_DOWN
+    rm -rf ~/$local_down
     echo directories removed.
 else
     echo no directories removed.
@@ -66,10 +90,10 @@ fi
 
 echo
 echo remove the following files? [yN]
-ls ~/$OPUS_DIR/opus
+ls ~/$opus_dir/opus
 read -e choice
 if [[ "$choice" == [Yy]* ]]; then
-    rm -rf ~/$OPUS_DIR/opus
+    rm -rf ~/$opus_dir/opus
     echo directory removed.
 else
     echo no directories removed.
