@@ -1,6 +1,6 @@
 #!/bin/bash
 
-remote="pi@strawberryjams.student.case.edu"
+remote="pi@jams.local"
 remote_down="/media/pi/torrents/seeding/"
 local_down="incoming_music"
 opus_dir="converted"
@@ -62,8 +62,10 @@ beet modify -y -a format='FLAC' "$beetsdir"
 beet modify -y -a format='Opus' "${beetsdir:0:-5}Opus]/"
 
 echo editing edition years...
-year-editor.sh "$beetsdir"
-year-editor.sh "${beetsdir:0:-5}Opus]/"
+year-editor.sh -a path:"$beetsdir"
+year-editor.sh -a path:"${beetsdir:0:-5}Opus]/"
+#year-editor.sh "$beetsdir"
+#year-editor.sh "${beetsdir:0:-5}Opus]/"
 echo updating symlinks...
 beet alt update bestquality
 beet alt update smallest
