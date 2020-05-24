@@ -27,7 +27,7 @@ if [ $1 = "-a" ]; then
     args=${args:2}
     echo $args
     # get three year variables, including edition_year in case already set
-    current_album_info=$(bash -c 'beet ls -a '"$args"' -f \$year-\$edition_year-\$original_year')
+    current_album_info=$(bash -c 'beet ls -a '"$args"' -f \$year-\$edition_year-\$original_year' | head -1)
     IFS='-'
     current_album_info=( $current_album_info )
     # year values on album level
@@ -42,7 +42,6 @@ if [ $1 = "-a" ]; then
         bash -c "beet modify -y $args edition_year=$year_album"
         if [ $original_year_album -gt 0 ]; then
             bash -c "beet modify -a -y $args year=$original_year_album"
-            bash -c "beet modify -y $args year=$original_year_album"
         fi
         echo
     else
