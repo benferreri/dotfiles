@@ -17,9 +17,9 @@ scp -r $remote:"\"${remote_down}${remote_dir}\"" $HOME/$local_down/
 # prefer CD (uncomment line in config) if there is a .log file
 if [ -f "$HOME/$local_down/$remote_dir"/*.log ]; then
     echo preferring CD...
-    sed -i 's/#match/match/' $HOME/.config/beets/config.yaml
-    sed -i 's/#preferred/preferred/' $HOME/.config/beets/config.yaml
-    sed -i 's/#media/media/' $HOME/.config/beets/config.yaml
+    sed -i '6s/#match/match/' $HOME/.config/beets/config.yaml
+    sed -i '7s/#preferred/preferred/' $HOME/.config/beets/config.yaml
+    sed -i '8s/#media/media/' $HOME/.config/beets/config.yaml
 fi
 
 echo importing to beets...
@@ -33,9 +33,9 @@ if [ -z "$beetsdir" ]; then
     echo import failed.
     # comment out preferred CD til next time
     if [ -f "$local_down/$remote_dir/"*.log ]; then
-        sed -i 's/match/#match/' $HOME/.config/beets/config.yaml
-        sed -i 's/preferred/#preferred/' $HOME/.config/beets/config.yaml
-        sed -i 's/media/#media/' $HOME/.config/beets/config.yaml
+        sed -i '6s/match/#match/' $HOME/.config/beets/config.yaml
+        sed -i '7s/preferred/#preferred/' $HOME/.config/beets/config.yaml
+        sed -i '8s/media/#media/' $HOME/.config/beets/config.yaml
     fi
     exit 1
 fi
@@ -48,24 +48,22 @@ beet import --set unlistened='true' -l "$logpath" "$opus_dir/opus"
 
 # comment out preferred CD til next time
 if [ -f "$local_down/$remote_dir/"*.log ]; then
-    sed -i 's/match/#match/' $HOME/.config/beets/config.yaml
-    sed -i 's/preferred/#preferred/' $HOME/.config/beets/config.yaml
-    sed -i 's/media/#media/' $HOME/.config/beets/config.yaml
+    sed -i '6s/match/#match/' $HOME/.config/beets/config.yaml
+    sed -i '7s/preferred/#preferred/' $HOME/.config/beets/config.yaml
+    sed -i '8s/media/#media/' $HOME/.config/beets/config.yaml
 fi
 
 #echo marking tracks unlistened...
 #beet modify -y unlistened='true' "$beetsdir"
 #beet modify -y unlistened='true' "${beetsdir:0:-5}Opus]/"
 
-echo assigning album-level format field...
-beet modify -y -a format='FLAC' "$beetsdir"
-beet modify -y -a format='Opus' "${beetsdir:0:-5}Opus]/"
+#echo assigning album-level format field...
+#beet modify -y -a format='FLAC' "$beetsdir"
+#beet modify -y -a format='Opus' "${beetsdir:0:-5}Opus]/"
 
 echo editing edition years...
 year-editor.sh -a path:"$beetsdir"
 year-editor.sh -a path:"${beetsdir:0:-5}Opus]/"
-#year-editor.sh "$beetsdir"
-#year-editor.sh "${beetsdir:0:-5}Opus]/"
 echo updating symlinks...
 beet alt update bestquality
 beet alt update smallest
