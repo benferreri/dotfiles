@@ -22,6 +22,9 @@ if [ $# -ge 1 ]; then
         PWRCOLOR=$2
     elif [ -f ${WALLPAPERDIR}${IMGNAME}.conf ]; then
         { read -r PWRCOLOR; read -r BGCOLOR; read -r WALARGS; read -r GIFSPEED; } < ${WALLPAPERDIR}${IMGNAME}.conf       # reads lines of file into variables
+        if [ -z ${GIFSPEED} ]; then
+            GIFSPEED=100
+        fi
     else
         PWRCOLOR=yellow # default
         GIFSPEED=100
