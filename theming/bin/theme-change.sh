@@ -21,15 +21,17 @@ if [ $# -ge 1 ]; then
     if [ $# -eq 2 ]; then
         PWRCOLOR=$2
     elif [ -f ${WALLPAPERDIR}${IMGNAME}.conf ]; then
-        { read -r PWRCOLOR; read -r BGCOLOR; read -r WALARGS; } < ${WALLPAPERDIR}${IMGNAME}.conf       # reads lines of file into variables
+        { read -r PWRCOLOR; read -r BGCOLOR; read -r WALARGS; read -r GIFSPEED; } < ${WALLPAPERDIR}${IMGNAME}.conf       # reads lines of file into variables
     else
         PWRCOLOR=yellow # default
+        GIFSPEED=100
     fi
 else
     # defaults
     IMG=space.jpg
     IMGNAME=space
     PWRCOLOR=mediumpurple
+    GIFSPEED=100
 fi
 
 # change which pywal colors polybar uses (to colors-<imagename> file)
@@ -54,9 +56,9 @@ if [ ${IMG##*.} = "gif" ]; then
     if [ ! -d "${WALLPAPERDIR}${IMGNAME}" ]; then
         mkdir "${WALLPAPERDIR}${IMGNAME}"
         convert "${WALLPAPERDIR}${IMG}" -coalesce -resize ${DIMENSIONS}^ -gravity Center -extent ${DIMENSIONS} "${WALLPAPERDIR}${IMGNAME}"/%05d.gif && \
-            asetroot ${WALLPAPERDIR}${IMGNAME}/ & disown
+            asetroot ${WALLPAPERDIR}${IMGNAME}/ -t ${GIFSPEED} & disown
     else
-        asetroot ${WALLPAPERDIR}${IMGNAME}/ & disown
+        asetroot ${WALLPAPERDIR}${IMGNAME}/ -t ${GIFSPEED} & disown
     fi
 fi
 
