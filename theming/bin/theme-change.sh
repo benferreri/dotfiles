@@ -13,6 +13,7 @@
 # unwanted dependencies
 
 WALLPAPERDIR=$HOME/pictures/wallpapers/
+DIMENSIONS=3840x2160
 
 if [ $# -ge 1 ]; then
     IMG=$1
@@ -44,14 +45,28 @@ if [ -z ${BGCOLOR+x} ]; then
 else
     wal $WALARGS -i ${WALLPAPERDIR}${IMG} -b $BGCOLOR
 fi
+# set the animated wallpaper if a gif was chosen
+if [ ${IMG##*.} = "gif" ]; then
+    # stop previous asetroot in case it's running
+    killall asetroot
+    # if gif dir does not exist, we need to split the gif for asetroot
+    # this only occurs the first time this gif is being used
+    if [ ! -d "${WALLPAPERDIR}${IMGNAME}" ]; then
+        mkdir "${WALLPAPERDIR}${IMGNAME}"
+        convert "${WALLPAPERDIR}${IMG}" -coalesce -resize ${DIMENSIONS}^ -gravity Center -extent ${DIMENSIONS} "${WALLPAPERDIR}${IMGNAME}"/%05d.gif && \
+            asetroot ${WALLPAPERDIR}${IMGNAME}/ & disown
+    else
+        asetroot ${WALLPAPERDIR}${IMGNAME}/ & disown
+    fi
+fi
 
 # change powerline color
 sed -i "43 s/\(\"bg\":\) \(\"[^,]*\"\),/\1 \"$PWRCOLOR\",/" $HOME/.config/powerline/colorschemes/default.json
 
 # change compton shadow color
-. $HOME/.config/compton/colorswitch.sh
-pkill compton
-compton &
+. $HOME/.config/picom/colorswitch.sh
+pkill picom
+picom -b
 
 # change rofi selection color
 . $HOME/.cache/wal/colors.sh
