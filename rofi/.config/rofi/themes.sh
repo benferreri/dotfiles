@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z $@ ]; then
-    echo current; ls --ignore=*.conf $HOME/pictures/wallpapers
+    echo current; find $HOME/pictures/wallpapers -maxdepth 1 -not -type d -not -iname '*.conf' -exec basename {} \;
 else
     THEMES=$@
     if [ x"current" = x"${THEMES}" ]; then
