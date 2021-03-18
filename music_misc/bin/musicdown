@@ -1,10 +1,10 @@
 #!/bin/bash
 
-remote="pi@jams.local"
-remote_down="/media/pi/torrents/seeding/"
+remote="ben@blueberryjams"
+remote_down="/mnt/media/torrents/seeding/"
 local_down="incoming_music"
 opus_dir="converted"
-remote_beets="/media/pi/music/"
+remote_beets="/mnt/media/music/"
 local_beets="$HOME/music/beets/"
 logpath="$HOME/data/beets.log"
 
@@ -73,7 +73,7 @@ read -e -p "sync to remote? [Yn] " choice
 if [[ "$choice" == [Nn]* ]]; then
     echo skipping sync.
 else
-    echo syncing to strawberryjams...
+    echo syncing to remote...
     sm      # custom music-syncing command
 fi
 
