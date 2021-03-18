@@ -15,7 +15,8 @@ floating_modifier $mod
 bindsym $mod+m exec firefox
 
 # open terminal
-bindsym $mod+o exec urxvt
+bindsym $mod+p exec urxvt
+bindsym $mod+o exec alacritty
 
 # open rofi
 bindsym $mod+s exec rofi -show drun 
@@ -134,7 +135,9 @@ bindsym $mod+r mode "resize"
 
 # Necessary for i3-gaps to work properly (pixel can be any value)
 for_window [class="^.*"] border pixel 0
-client.focused #8e3030 #28577 #ffffff #ed1d02 #720700
+client.focused          #000000 #285777 #ffffff #ed1d02 #703f99
+client.focused_inactive #000000 #285777 #ffffff #ed1d02 #381f4d
+client.unfocused        #000000 #285777 #ffffff #ed1d02 #381f4d
 
 # Smart Borders
 smart_borders on
@@ -204,7 +207,7 @@ bindsym $mod+F7 exec --no-startup-id mpdnotify
 bindsym $mod+comma sticky toggle
 bindsym $mod+period resize set 1270 950; move position 2600 1220; sticky toggle
 bindsym $mod+slash exec --no-startup-id urxvt -geometry 90x6 -name "floating_urxvt"
-bindsym $mod+equal exec --no-startup-id urxvt -geometry 90x15 -name "floating_urxvt" --hold -e python -q
+bindsym $mod+equal exec --no-startup-id urxvt -geometry 90x15 -name "floating_urxvt" --hold -e python -q -i -c 'import math'
 for_window [class="URxvt" instance="floating_urxvt$"] floating toggle
 
 # startup
@@ -217,3 +220,5 @@ exec --no-startup-id sudo powertop --auto-tune
 exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Scrolling Distance' -30 -30
 exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Palm Detection' 1
 exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Two-Finger Scrolling' 1 1
+exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell
+exec --no-startup-id pactl load-module module-x11-bell sample=bell
