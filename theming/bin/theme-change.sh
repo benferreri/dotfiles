@@ -46,7 +46,7 @@ fi
 
 # pywal
 if [ -z ${BGCOLOR+x} ]; then
-    wal -i ${WALLPAPERDIR}${IMG} -b 444444
+    wal -i ${WALLPAPERDIR}${IMG} -b 191919
 else
     wal $WALARGS -i ${WALLPAPERDIR}${IMG} -b $BGCOLOR
 fi
