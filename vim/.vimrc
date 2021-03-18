@@ -71,6 +71,7 @@ set pastetoggle=<F11>
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+autocmd FileType dart setlocal shiftwidth=2 tabstop=2
  
 " mappings
  
@@ -97,6 +98,7 @@ map <A-l> :tabn<cr>
 " colors
 highlight Normal ctermfg=White
 
+
 " relative line numbers
 set number relativenumber
 set relativenumber
@@ -115,6 +117,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" disable latex-box from vim-polyglot (use vimtex instead)
+let g:polyglot_disabled = ['latex']
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'zhou13/vim-easyescape'
@@ -131,6 +136,7 @@ Plug 'flrnprz/candid.vim'
 Plug 'severij/vadelma'
 Plug 'arzg/vim-colors-xcode'
 Plug 'kjssad/quantum.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
@@ -268,8 +274,6 @@ let g:easyescape_timeout = 100
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 
-" disable latex-box from vim-polyglot (use vimtex instead)
-let g:polyglot_disabled = ['latex']
 
 " colorscheme
 
@@ -282,12 +286,25 @@ let g:polyglot_disabled = ['latex']
 
 " 256 colors
 set termguicolors
+" for alacritty
+if &term == "alacritty"
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;;%lum"
+    let &term = "xterm-256color"
+endif
 
 " dark mode
-colorscheme xcodedark
+"colorscheme xcodedark
+colorscheme palenight
+let g:palenight_terminal_italics=1
+
 set background=dark
-hi Normal guibg=#191919
-hi EndOfBuffer guibg=#191919
+"hi Normal guibg=#191919
+"hi EndOfBuffer guibg=#191919
+
+" in between
+"hi Normal guibg=#444444
+"hi EndOfBuffer guibg=#444444
 
 " light mode
 "colorscheme xcodelight
@@ -314,7 +331,10 @@ set cursorline
 hi CursorLine guibg=#2a2a2a
 
 "dark mode
-hi CursorLineNR guibg=#191919 guifg=#b7b0f2
+"hi CursorLineNR guibg=#191919 guifg=#b7b0f2
+
+"in between
+"hi CursorLineNR guibg=#2a2a2a guifg=#b7b0f2
 
 "light mode
 "hi CursorLineNR guibg=#c6c6c6 guifg=#470660
