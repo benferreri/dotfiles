@@ -21,6 +21,8 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$HOME/.local/bin:$PATH"
     PATH="$HOME/":$PATH
 fi
+# add flutter things to path
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 # start pywal
 wal -R
 export BAT_THEME="OneHalfDark"
@@ -29,3 +31,7 @@ export QSYS_ROOTDIR="/mnt/shared/ben/builds/quartus-free/pkg/quartus-free/mnt/sh
 
 # esp8266
 export IDF_PATH="$HOME/esp/ESP8266_RTOS_SDK"
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
+export TERM=xterm-256color

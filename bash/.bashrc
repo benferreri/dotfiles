@@ -16,7 +16,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
+HISTSIZE=1000000
 HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
@@ -125,5 +125,8 @@ fi
 if [ -f /usr/share/fzf/completion.bash ]; then
     . /usr/share/fzf/completion.bash
 fi
+_fzf_setup_completion path zath
+export FZF_COMPLETION_TRIGGER='``'
 
 export QSYS_ROOTDIR="/mnt/shared/ben/builds/quartus-free/pkg/quartus-free/mnt/shared/opt/altera/19.1/quartus/sopc_builder/bin"
+
