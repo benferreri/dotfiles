@@ -12,61 +12,68 @@
 # comment out appropriate sections of the script to remove
 # unwanted dependencies
 
-WALLPAPERDIR=$HOME/pictures/wallpapers/
-DIMENSIONS=3840x2160
+wallpaperdir=$HOME/pictures/wallpapers/
+dimensions=3840x2160
 
 if [ $# -ge 1 ]; then
-    IMG=$1
-    IMGNAME=$(echo $IMG | sed 's/\([a-z,A-Z,0-9]*\)\..*/\1/')
+    img=$1
+    imgname=$(echo $img | sed 's/\([a-z,A-Z,0-9]*\)\..*/\1/')
     if [ $# -eq 2 ]; then
-        PWRCOLOR=$2
-    elif [ -f ${WALLPAPERDIR}${IMGNAME}.conf ]; then
-        { read -r PWRCOLOR; read -r BGCOLOR; read -r WALARGS; read -r GIFSPEED; } < ${WALLPAPERDIR}${IMGNAME}.conf       # reads lines of file into variables
-        if [ -z ${GIFSPEED} ]; then
-            GIFSPEED=100
+        pwrcolor=$2
+    elif [ -f ${wallpaperdir}${imgname}.conf ]; then
+        { read -r pwrcolor; read -r bgcolor; read -r WALARGS; read -r gifspeed; } < ${wallpaperdir}${imgname}.conf       # reads lines of file into variables
+        if [ -z ${gifspeed} ]; then
+            gifspeed=100
         fi
     else
-        PWRCOLOR=yellow # default
-        GIFSPEED=100
+        pwrcolor=yellow # default
+        gifspeed=100
     fi
 else
     # defaults
-    IMG=space.jpg
-    IMGNAME=space
-    PWRCOLOR=mediumpurple
-    GIFSPEED=100
+    img=space.jpg
+    imgname=space
+    pwrcolor=mediumpurple
+    gifspeed=100
 fi
 
 # change which pywal colors polybar uses (to colors-<imagename> file)
-if [ -e $HOME/.config/polybar/colors-$IMGNAME ]; then
-    sed -i "s/\(colors-\).*/\1$IMGNAME/" $HOME/.config/polybar/config
+if [ -e $HOME/.config/polybar/colors-$imgname ]; then
+    sed -i "s/\(colors-\).*/\1$imgname/" $HOME/.config/polybar/config
 else
     sed -i "s/\(colors-\).*/\1space/" $HOME/.config/polybar/config
 fi
 
 # pywal
-if [ -z ${BGCOLOR+x} ]; then
-    wal -i ${WALLPAPERDIR}${IMG} -b 191919
+if [ -z ${bgcolor+x} ]; then
+    wal -i ${wallpaperdir}${img} -b 191919
 else
-    wal $WALARGS -i ${WALLPAPERDIR}${IMG} -b $BGCOLOR
+    wal $WALARGS -i ${wallpaperdir}${img} -b $bgcolor
 fi
 # set the animated wallpaper if a gif was chosen
-if [ ${IMG##*.} = "gif" ]; then
+if [ ${img##*.} = "gif" ]; then
     # stop previous asetroot in case it's running
     killall asetroot
     # if gif dir does not exist, we need to split the gif for asetroot
     # this only occurs the first time this gif is being used
-    if [ ! -d "${WALLPAPERDIR}${IMGNAME}" ]; then
-        mkdir "${WALLPAPERDIR}${IMGNAME}"
-        convert "${WALLPAPERDIR}${IMG}" -coalesce -resize ${DIMENSIONS}^ -gravity Center -extent ${DIMENSIONS} "${WALLPAPERDIR}${IMGNAME}"/%05d.gif && \
-            asetroot ${WALLPAPERDIR}${IMGNAME}/ -t ${GIFSPEED} & disown
+    if [ ! -d "${wallpaperdir}${imgname}" ]; then
+        mkdir "${wallpaperdir}${imgname}"
+        convert "${wallpaperdir}${img}" -coalesce -resize ${dimensions}^ -gravity Center -extent ${dimensions} "${wallpaperdir}${imgname}"/%05d.gif && \
+            asetroot ${wallpaperdir}${imgname}/ -t ${gifspeed} & disown
     else
-        asetroot ${WALLPAPERDIR}${IMGNAME}/ -t ${GIFSPEED} & disown
+        asetroot ${wallpaperdir}${imgname}/ -t ${gifspeed} & disown
     fi
 fi
 
+# change vimrc based on light or dark
+if [ $WALARGS = "-l" ]; then
+    cp $HOME/.vimrc-light $HOME/.vimrc
+else
+    cp $HOME/.vimrc-dark $HOME/.vimrc
+fi
+
 # change powerline color
-sed -i "43 s/\(\"bg\":\) \(\"[^,]*\"\),/\1 \"$PWRCOLOR\",/" $HOME/.config/powerline/colorschemes/default.json
+sed -i "43 s/\(\"bg\":\) \(\"[^,]*\"\),/\1 \"$pwrcolor\",/" $HOME/.config/powerline/colorschemes/default.json
 
 # change compton shadow color
 . $HOME/.config/picom/colorswitch.sh
