@@ -65,7 +65,7 @@ set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
 
 " folding by syntax
-set foldmethod=syntax
+"set foldmethod=syntax
  
  
 " indentation options
