@@ -63,6 +63,9 @@ set notimeout ttimeout ttimeoutlen=200
  
 " use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
+
+" folding by syntax
+set foldmethod=syntax
  
  
 " indentation options
@@ -132,11 +135,16 @@ Plug 'tpope/vim-sensible'
 Plug 'yggdroot/indentline'
 Plug 'lervag/vimtex'
 Plug 'sheerun/vim-polyglot'
+Plug 'itchyny/lightline.vim'
+
+" colorschemes
 Plug 'flrnprz/candid.vim'
 Plug 'severij/vadelma'
 Plug 'arzg/vim-colors-xcode'
 Plug 'kjssad/quantum.vim'
 Plug 'drewtempelmeyer/palenight.vim'
+
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
@@ -246,7 +254,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings using CoCList:
 " Show all diagnostics.
@@ -274,7 +282,6 @@ let g:easyescape_timeout = 100
 cnoremap jk <ESC>
 cnoremap kj <ESC>
 
-
 " colorscheme
 
 " let g:solarized_termcolors=16
@@ -297,6 +304,7 @@ endif
 "colorscheme xcodedark
 colorscheme palenight
 let g:palenight_terminal_italics=1
+let g:lightline = { 'colorscheme': 'palenight' }
 
 set background=dark
 "hi Normal guibg=#191919
