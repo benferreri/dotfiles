@@ -1,0 +1,337 @@
+;
+=========================================================
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;   The README contains alot of information
+;==========================================================
+
+[colors]
+include-file = /home/ben/.config/polybar/colors-fireweeds
+
+[module/xwindow]
+type = internal/xwindow
+label = " %title:0:50:...%"
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+enable-scroll = false
+
+label-mode-padding = 1
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+label-focused = %index%
+label-focused-background = ${colors.primary}
+label-focused-foreground = ${colors.secondary}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-padding = 1
+label-unfocused-background = ${colors.secondary}
+label-unfocused-foreground = ${colors.primary}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-foreground = ${colors.mod-frg}
+format-background = ${colors.mod-bkg}
+format-underline = #f90000
+label = "  %percentage:02%%  "
+label-background = ${colors.mod-bkg}
+label-foreground = ${colors.mod-frg}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-foreground = ${colors.mod-frg}
+format-background = ${colors.mod-bkg}
+format-underline = #4bffdc
+label = " percentage_used:02%%  "
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected-background = ${colors.mod-bkg}
+format-connected-foreground = ${colors.mod-frg}
+format-connected = <ramp-signal>
+format-connected-underline = #9f78e1
+label-connected = 
+
+format-disconnected-background = ${colors.mod-bkg}
+format-disconnected-foreground = ${colors.mod-frg}
+label-disconnected = "%{A1:nm-connection-editor:} %{T3}睊%{T-} %{A}"
+format-disconnected = <label-disconnected>
+
+ramp-signal-0 = "%{A1:nm-connection-editor:} %{T3}直%{T-} %{A}"
+ramp-signal-1 = "%{A1:nm-connection-editor:} %{T3}直%{T-} %{A}"
+ramp-signal-2 = "%{A1:nm-connection-editor:} %{T3}直%{T-} %{A}"
+
+[module/eth]
+type = internal/network
+interface = eth0
+interval = 3.0
+
+label-connected-foreground = ${colors.mod-frg}
+label-connected-background = ${colors.mod-bkg}
+label-connected = "%{A1:nm-connection-editor:}%{T2}%{T-}%{A}"
+
+label-disconnected-foreground = ${colors.mod-frg}
+label-disconnected-background = ${colors.mod-bkg}
+label-disconnected = "%{A1:nm-connection-editor:}%{T2}%{T-}%{A}"
+
+[module/music-button]
+type = custom/text
+content-foreground = ${colors.mod-frg}
+content-background = ${colors.mod-bkg}
+content = "%{A1:mpdnotify:} %{T2}ﱘ%{T-} %{A}"
+
+[module/music-playing]
+type = custom/script
+content-foreground = ${colors.bar-frg}
+content-background = ${colors.bar-bkg}
+exec = mpc current --wait
+content = "%{
+exec-if = [ -n "$(mpc status | grep playing)" ]
+tail = true
+
+[module/date]
+type = internal/date
+interval = 1
+
+date =
+date-alt = "%Y-%m-%d "
+
+time = "%I:%M %p%"
+time-alt = "%H:%M:%S"
+
+label = "%date%%time%"
+label-background = ${colors.mod-bkg}
+label-foreground = ${colors.mod-frg}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-foreground = ${colors.mod-frg}
+format-volume-background = ${colors.mod-bkg}
+format-volume = <label-volume>
+label-volume = " %{T3}%{T-} %percentage%% "
+
+label-muted-foreground = ${colors.mod-frg}
+label-muted-background = ${colors.mod-bkg}
+label-muted = " %{T3}%{T-} "
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator-background = ${colors.mod-bkg}
+bar-volume-indicator-foreground = ${colors.mod-frg}
+bar-volume-indicator = |
+bar-volume-indicator-font = 0
+bar-volume-fill-background = ${colors.mod-bkg}
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty-foreground = ${colors.mod-frg}
+bar-volume-empty-background = ${colors.mod-bkg}
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging-foreground = ${colors.mod-frg}
+format-charging-background = ${colors.mod-bkg}
+format-charging = <animation-charging> <label-charging>
+label-charging-foreground = ${colors.mod-frg}
+format-charging-underline = #ffb52a
+
+format-discharging-foreground = ${colors.mod-frg}
+format-discharging-background = ${colors.mod-bkg}
+label-discharging-foreground = ${colors.mod-frg}
+format-discharging = "<ramp-capacity> <label-discharging> "
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-foreground = ${colors.mod-frg}
+format-full-background = ${colors.mod-bkg}
+format-full-prefix = "%{T4}%{T-}"
+format-full-suffix =  
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-foreground = ${colors.mod-frg}
+ramp-capacity-0 = " %{T4}%{T-}"
+ramp-capacity-1 = " %{T4}%{T-}"
+ramp-capacity-2 = " %{T4}%{T-}"
+ramp-capacity-3 = " %{T4}%{T-}"
+ramp-capacity-4 = " %{T4}%{T-}"
+ramp-capacity-5 = " %{T4}%{T-}"
+ramp-capacity-6 = " %{T4}%{T-}"
+ramp-capacity-7 = " %{T4}%{T-}"
+ramp-capacity-8 = " %{T4}%{T-}"
+ramp-capacity-9 = " %{T4}%{T-}"
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.mod-frg}
+animation-charging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+label-foreground = ${colors.mod-frg}
+format-background = ${colors.mod-bkg}
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-background = ${colors.mod-bkg}
+format-warn-underline = ${self.format-underline}
+
+label = " %temperature-c%  "
+label-warn = " %temperature-c%  "
+label-warn-foreground = #b50000
+
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
+ramp-foreground = ${colors.mod-frg}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+format-background = ${colors.mod-bkg}
+format-foreground = ${colors.mod-frg}
+
+label-open = "%{T2}%{T-} "
+label-close = "close"
+label-separator = |
+
+menu-0-0 = "reboot"
+menu-0-0-exec = menu-open-1
+menu-0-1 = "power off "
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = "cancel"
+menu-1-0-exec = menu-open-0
+menu-1-1 = "reboot "
+menu-1-1-exec = systemctl reboot
+
+menu-2-0 = "power off"
+menu-2-0-exec = systemctl poweroff
+menu-2-1 = "cancel "
+menu-2-1-exec = menu-open-0
+
+[module/decor-glyph]
+type = custom/text
+content-background = ${colors.mod-bkg}
+content-foreground = ${colors.bar-bkg}
+
+[module/left-start]
+inherit = module/decor-glyph
+content = "%{T2}%{T-}"
+
+[module/left-end]
+inherit = module/decor-glyph
+content = "%{T2}%{T-}"
+
+[module/left-edge]
+type = custom/text
+content-background = ${colors.bar-bkg}
+content-foreground = ${colors.mod-bkg}
+content = "%{T1}%{T-}"
+
+[module/right-start]
+inherit = module/decor-glyph
+content = "%{T2}%{T-}"
+
+[module/right-end]
+inherit = module/decor-glyph
+content = "%{T2}%{T-}"
+
+[module/right-edge]
+type = custom/text
+content-background = ${colors.bar-bkg}
+content-foreground = ${colors.mod-bkg}
+content = "%{T1}%{T-}"
+
+[module/rofi]
+type = custom/text
+
+content-background = ${colors.mod-bkg}
+content-foreground = ${colors.mod-frg}
+
+content = "%{A1:rofi -show drun:} %{T2}%{T-}%{A} "
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[bar/mypolybar]
+bottom = false
+width = 100%
+dock = false
+height = 60
+offset-x = 0
+offset-y = 0
+override-redirect = true
+wm-restack = i3
+
+background = ${colors.bar-bkg}
+foreground = ${colors.bar-frg}
+
+line-size = 0
+line-color = #f00
+
+border-left-size = 20
+border-right-size = 20
+border-top-size = 20
+border-bottom-size = 0
+border-color = #00000000
+
+font-0 = "Iosevka Term:pixelsize=28;5"
+font-1 = "Iosevka Term:pixelsize=48;8"
+font-2 = "Iosevka Term:pixelsize=68;14"
+font-3 = "Iosevka Term:pixelsize=38;6"
+
+modules-left = rofi left-end left-start wlan left-end left-start music-button left-end left-edge xwindow
+modules-center = i3
+modules-right = music-playing right-edge right-start pulseaudio right-end right-start battery right-end right-start date right-end right-start powermenu
+module-margin = 0
+
+fixed-center = true
+
+tray-position = none
+
+cursor-click = pointer
