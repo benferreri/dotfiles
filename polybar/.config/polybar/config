@@ -1,12 +1,12 @@
 ;
-=========================================================
+;=========================================================
 ;   To learn more about how to configure Polybar
 ;   go to https://github.com/jaagr/polybar
 ;   The README contains alot of information
 ;==========================================================
 
 [colors]
-include-file = /home/ben/.config/polybar/colors-pinkclouds
+include-file = /home/ben/.config/polybar/colors-wolchulsan
 
 [module/xwindow]
 type = internal/xwindow
@@ -302,7 +302,7 @@ margin-bottom = 5
 bottom = false
 width = 100%
 dock = false
-height = 60
+height = 35
 offset-x = 0
 offset-y = 0
 override-redirect = true
@@ -314,16 +314,16 @@ foreground = ${colors.bar-frg}
 line-size = 0
 line-color = #f00
 
-border-left-size = 20
-border-right-size = 20
-border-top-size = 20
+border-left-size = 0
+border-right-size = 0
+border-top-size = 0
 border-bottom-size = 0
 border-color = #00000000
 
-font-0 = "Iosevka Term:pixelsize=28;5"
-font-1 = "Iosevka Term:pixelsize=48;8"
-font-2 = "Iosevka Term:pixelsize=68;14"
-font-3 = "Iosevka Term:pixelsize=38;6"
+font-0 = "Iosevka Term:pixelsize=14;2"
+font-1 = "Iosevka Term:pixelsize=28;6"
+font-2 = "Iosevka Term:pixelsize=36;9"
+font-3 = "Iosevka Term:pixelsize=20;4"
 
 modules-left = rofi left-end left-start wlan left-end left-start music-button left-end left-edge xwindow
 modules-center = i3

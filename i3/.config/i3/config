@@ -15,7 +15,6 @@ floating_modifier $mod
 bindsym $mod+m exec firefox
 
 # open terminal
-bindsym $mod+p exec urxvt
 bindsym $mod+o exec alacritty
 
 # open rofi
@@ -193,33 +192,33 @@ set_from_resource $glow i3wm.color6 #f0f0f0
 
 # bindings
 
-bindsym $mod+Shift+Escape exec --no-startup-id i3lock
+#bindsym $mod+Shift+Escape exec --no-startup-id i3lock
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo xbacklight -dec 10
-bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
-bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
-bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
+bindsym XF86AudioMute exec --no-startup-id pamixer -t
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym --release Print exec --no-startup-id flameshot gui
-bindsym $mod+F7 exec --no-startup-id mpdnotify
+#bindsym $mod+F7 exec --no-startup-id mpdnotify
 bindsym $mod+comma sticky toggle
 bindsym $mod+period resize set 1270 950; move position 2600 1220; sticky toggle
-bindsym $mod+backslash exec rofimoji
-bindsym $mod+slash exec --no-startup-id urxvt -geometry 90x6 -name "floating_urxvt"
-bindsym $mod+equal exec --no-startup-id urxvt -geometry 90x15 -name "floating_urxvt" --hold -e python -q -i -c 'import math'
-for_window [class="URxvt" instance="floating_urxvt$"] floating toggle
+#bindsym $mod+backslash exec rofimoji
+#bindsym $mod+slash exec --no-startup-id urxvt -geometry 90x6 -name "floating_urxvt"
+#bindsym $mod+equal exec --no-startup-id urxvt -geometry 90x15 -name "floating_urxvt" --hold -e python -q -i -c 'import math'
+#for_window [class="URxvt" instance="floating_urxvt$"] floating toggle
 
 # startup
 
-exec --no-startup-id picom -b &
+#exec --no-startup-id picom -b &
+exec --no-startup-id wal -R
 exec --no-startup-id redshift
 exec --no-startup-id polybar mypolybar
 exec --no-startup-id dunst
-exec --no-startup-id sudo powertop --auto-tune
-exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Scrolling Distance' -30 -30
-exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Palm Detection' 1
-exec --no-startup-id xinput set-prop 'DLL07BE:01 06CB:7A13 Touchpad' 'Synaptics Two-Finger Scrolling' 1 1
-exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell
-exec --no-startup-id pactl load-module module-x11-bell sample=bell
+#exec --no-startup-id sudo powertop --auto-tune
+exec --no-startup-id xinput set-prop 'DELL097C:00 06CB:CCA8 Touchpad' 'libinput Tapping Enabled' 1
+exec --no-startup-id xinput set-prop 'DELL097C:00 06CB:CCA8 Touchpad' 'libinput Natural Scrolling Enabled' 1
+#exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell
+#exec --no-startup-id pactl load-module module-x11-bell sample=bell
