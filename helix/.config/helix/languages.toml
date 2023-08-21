@@ -1,0 +1,5 @@
+[[language]]
+name = "python"
+config = { pylsp.plugins.autopep8.enabled = false, pylsp.plugins.black.enabled = true, pylsp.plugins.black.line_length = 79, pylsp.plugins.pylint.enabled = true}
+formatter = { command = "black", args = ["-", "--quiet", "-l", "79"]}
+auto-format = true
